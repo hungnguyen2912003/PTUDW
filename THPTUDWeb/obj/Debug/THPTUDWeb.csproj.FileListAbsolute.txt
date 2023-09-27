@@ -156,3 +156,10 @@ E:\PTUDW\THPTUDWeb\obj\Debug\THPTUDWeb.csproj.CoreCompileInputs.cache
 E:\PTUDW\THPTUDWeb\obj\Debug\THPTUDWeb.csproj.CopyComplete
 E:\PTUDW\THPTUDWeb\obj\Debug\THPTUDWeb.dll
 E:\PTUDW\THPTUDWeb\obj\Debug\THPTUDWeb.pdb
+E:\PTUDW\THPTUDWeb\bin\EntityFramework.dll
+E:\PTUDW\THPTUDWeb\bin\EntityFramework.SqlServer.dll
+E:\PTUDW\THPTUDWeb\bin\EntityFramework.xml
+E:\PTUDW\THPTUDWeb\bin\EntityFramework.SqlServer.xml
+E:\PTUDW\THPTUDWeb\bin\MyClass.dll
+E:\PTUDW\THPTUDWeb\bin\MyClass.pdb
+E:\PTUDW\THPTUDWeb\bin\MyClass.dll.config
