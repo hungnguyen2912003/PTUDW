@@ -3,18 +3,16 @@
 <head>
 	<title>@ViewBag.Title</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>AdminLTE 3 | Blank Page</title>
-
 	<!-- Google Font: Source Sans Pro -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<!-- Font Awesome -->
-	<link rel="stylesheet" href="~/Public/plugins/fontawesome-free/css/all.min.css">
+	<link href="~/Public/plugins/fontawesome-free/css/all.min.css" rel="stylesheet" />
 	<!-- Theme style -->
-	<link rel="stylesheet" href="~/Public/dist/css/adminlte.min.css">
-	<!-- jQuery -->
-	<script src="~/Public/plugins/jquery/jquery.min.js"></script>
-	<!-- Bootstrap 4 -->
-	<link href="~/Public/css/LayoutSite.css" rel="stylesheet"/>
+	<link href="~/Public/dist/css/adminlte.min.css" rel="stylesheet" />
+	<!-- Bootstrap tu dinh  nghia-->
+	<link href="~/Public/css/LayoutAdmin.css" rel="stylesheet" />
+
+	@*Khu vuc header*@
 	@RenderSection("header", required: false)
 </head>
 
@@ -94,7 +92,7 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="@Url.Action("Index","Category")" class="nav-link">
+									<a href="@Url.Action("Index","Categories")" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Danh mục loại sản phẩm</p>
 									</a>
