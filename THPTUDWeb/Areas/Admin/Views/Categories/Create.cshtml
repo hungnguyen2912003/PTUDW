@@ -9,7 +9,6 @@
 {
 	@Html.AntiForgeryToken()
 	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
 	<!-- Content Wrapper. Contains page content -->
 	<div class="content-wrapper">
 
@@ -63,7 +62,7 @@
 						@* Phần lựa chọn *@
 						<div class="col-md-3">
 
-							@*<div class="form-group">
+							<div class="form-group">
 								<label>Cấp cha <span class="text-danger"></span></label>
 								<div class="col-md-10">
 									@Html.DropDownListFor(model => model.ParentID, (SelectList)@ViewBag.ListCat, "Cấp 0", new { @class = "form-control" })
@@ -77,7 +76,7 @@
 									@Html.DropDownListFor(model => model.Order, (SelectList)@ViewBag.OrderList, "Sắp xếp", new { @class = "form-control" })
 									@Html.ValidationMessageFor(model => model.Order, "", new { @class = "text-danger" })
 								</div>
-							</div>*@
+							</div>
 
 							<div class="form-group">
 								<label>Trạng thái <span class="text-danger"> (*)</span></label>
