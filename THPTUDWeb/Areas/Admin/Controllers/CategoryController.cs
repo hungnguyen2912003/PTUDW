@@ -59,7 +59,8 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 categoriesDAO.Insert(categories);
                 return RedirectToAction("Index");
             }
-
+            ViewBag.CatList = new SelectList(categoriesDAO.getList("Index"), "Id", "Name");
+            ViewBag.OrderList = new SelectList(categoriesDAO.getList("Index"), "Order", "Name");
             return View(categories);
         }
 
