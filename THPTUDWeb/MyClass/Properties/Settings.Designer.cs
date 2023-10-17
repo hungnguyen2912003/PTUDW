@@ -26,7 +26,7 @@ namespace MyClass.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-2M17T4N\\MSSQLSERVER2019;Initial Catalog=master;Integrated Sec" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-MLNCKRB\\MSSQLSERVER2019;Initial Catalog=master;Integrated Sec" +
             "urity=True")]
         public string StrConnect {
             get {
