@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MyClass.Model;
 using MyClass.DAO;
+using THPTUDWeb.Library;
 
 namespace THPTUDWeb.Areas.Admin.Controllers
 {
@@ -56,6 +57,26 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 categories.CreateAt = DateTime.Now;
                 //-----Create By
                 categories.CreateBy = Convert.ToInt32(Session["UserID"]);
+                //-----Slug
+                categories.Slug = XString.Str_Slug(categories.Name);
+                //-----ParentID
+                if (categories.ParentID == null)
+                {
+                    categories.ParentID = 0;
+                }
+                //-----Order
+                if (categories.Order == null)
+                {
+                    categories.Order = 1;
+                }
+                else
+                {
+                    categories.Order += 1;
+                }
+                //-----UpdateAt
+                categories.UpdateAt = DateTime.Now;
+                //-----UpdateBy
+                categories.UpdateBy = Convert.ToInt32(Session["UserID"]);
                 categoriesDAO.Insert(categories);
                 return RedirectToAction("Index");
             }
