@@ -28,12 +28,14 @@ namespace THPTUDWeb.Areas.Admin.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                TempData["message"] = new XMessage("danger", "Không tìm thấy loại sản phẩm");
+                return RedirectToAction("Index");
             }
             Categories categories = categoriesDAO.getRow(id);
             if (categories == null)
             {
-                return HttpNotFound();
+                TempData["message"] = new XMessage("danger", "Không tìm thấy loại sản phẩm");
+                return RedirectToAction("Index");
             }
             return View(categories);
         }
@@ -152,12 +154,18 @@ namespace THPTUDWeb.Areas.Admin.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //Thông báo thất bại
+                TempData["message"] = new XMessage("danger", "Xoá mẩu tin thất bại");
+                //Chuyển hướng trang
+                return RedirectToAction("Trash");
             }
             Categories categories = categoriesDAO.getRow(id);
             if (categories == null)
             {
-                return HttpNotFound();
+                //Thông báo thất bại
+                TempData["message"] = new XMessage("danger", "Xoá mẩu tin thất bại");
+                //Chuyển hướng trang
+                return RedirectToAction("Trash");
             }
             return View(categories);
         }
@@ -168,8 +176,11 @@ namespace THPTUDWeb.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Categories categories = categoriesDAO.getRow(id);
+            //Tìm thấy mẩu tin => xoá
             categoriesDAO.Delete(categories);
-            return RedirectToAction("Index");
+            //Hiển thị thông báo
+            TempData["message"] = new XMessage("success", "Xoá mẩu tin thành công");
+            return RedirectToAction("Trash");
         }
 
         //////////////////////////////////////////////////////////////////////
@@ -181,7 +192,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 //Thông báo thất bại
                 TempData["message"] = new XMessage("danger", "Cập nhật trạng thái thất bại");
                 //Chuyển hướng trang
-                return RedirectToAction("Index", "Category");
+                return RedirectToAction("Index");
             }
             Categories categories = categoriesDAO.getRow(id);
             if (categories == null)
@@ -189,7 +200,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 //Thông báo thất bại
                 TempData["message"] = new XMessage("danger", "Cập nhật trạng thái thất bại");
                 //Chuyển hướng trang
-                return RedirectToAction("Index", "Category");
+                return RedirectToAction("Index");
             }
             //Cập nhật trạng thái
             categories.Status = (categories.Status == 1) ? 2 : 1;
@@ -202,7 +213,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
             //Hiển thị thông báo thành công
             TempData["message"] = new XMessage("success", "Cập nhật trạng thái thành công");
             //Trở về trang Index
-            return RedirectToAction("Index", "Category");
+            return RedirectToAction("Index");
         }
 
         //////////////////////////////////////////////////////////////////////
@@ -214,7 +225,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 //Thông báo thất bại
                 TempData["message"] = new XMessage("danger", "Xoá loại sản phẩm thất bại");
                 //Chuyển hướng trang
-                return RedirectToAction("Index", "Category");
+                return RedirectToAction("Index");
             }
             Categories categories = categoriesDAO.getRow(id);
             if (categories == null)
@@ -222,7 +233,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 //Thông báo thất bại
                 TempData["message"] = new XMessage("danger", "Xoá loại sản phẩm thất bại");
                 //Chuyển hướng trang
-                return RedirectToAction("Index", "Category");
+                return RedirectToAction("Index");
             }
             //Cập nhật trạng thái
             categories.Status = 0;
@@ -235,7 +246,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
             //Hiển thị thông báo thành công
             TempData["message"] = new XMessage("success", "Xoá loại sản phẩm thành công");
             //Trở về trang Index
-            return RedirectToAction("Index", "Category");
+            return RedirectToAction("Index");
         }
         //////////////////////////////////////////////////////////////////////
         // GET: Admin/Category/Trash : Thùng rác
@@ -244,5 +255,37 @@ namespace THPTUDWeb.Areas.Admin.Controllers
             return View(categoriesDAO.getList("Trash"));
         }
 
+        //////////////////////////////////////////////////////////////////////
+        // GET: Admin/Category/Undo/5
+        public ActionResult Undo(int? id)
+        {
+            if (id == null)
+            {
+                //Thông báo thất bại
+                TempData["message"] = new XMessage("danger", "Phục hồi mẩu tin thất bại");
+                //Chuyển hướng trang
+                return RedirectToAction("Index");
+            }
+            Categories categories = categoriesDAO.getRow(id);
+            if (categories == null)
+            {
+                //Thông báo thất bại
+                TempData["message"] = new XMessage("danger", "Phục hồi mẩu tin thất bại");
+                //Chuyển hướng trang
+                return RedirectToAction("Index");
+            }
+            //Cập nhật trạng thái status = 2
+            categories.Status = 2;
+            //Cập nhật UpdateBy
+            categories.UpdateBy = Convert.ToInt32(Session["UserId"].ToString());
+            //Cập nhật UpdateAt
+            categories.UpdateAt = DateTime.Now;
+            //Update Database
+            categoriesDAO.Update(categories);
+            //Hiển thị thông báo thành công
+            TempData["message"] = new XMessage("success", "Phục hồi mẩu tin thành công");
+            //Ở lại trang Trash để xoá tiếp
+            return RedirectToAction("Trash");
+        }
     }
 }
