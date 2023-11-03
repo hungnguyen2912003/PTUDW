@@ -26,8 +26,7 @@ namespace THPTUDWeb.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-9D2BFNE\\MSSQLSERVER2019;Initial Catalog=master;Integrated Sec" +
-            "urity=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-BN9EAG1;Initial Catalog=master;Integrated Security=True")]
         public string StrConnect {
             get {
                 return ((string)(this["StrConnect"]));
