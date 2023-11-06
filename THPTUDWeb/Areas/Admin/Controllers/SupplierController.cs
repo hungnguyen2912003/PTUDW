@@ -141,6 +141,25 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 suppliers.UpdateAt = DateTime.Now;
                 //-----UpdateBy
                 suppliers.UpdateBy = Convert.ToInt32(Session["UserID"]);
+
+                //Xử lý thông tin phần Hình ảnh
+                var img = Request.Files["img"];//Lấy thông tin file
+                if (img.ContentLength != 0)
+                {
+                    string[] FileExtentions = new string[] { ".jpg", ".jpeg", ".png", ".gif" };
+                    //kiem tra tap tin co hay khong
+                    if (FileExtentions.Contains(img.FileName.Substring(img.FileName.LastIndexOf("."))))//Lấy phần mở rộng tập tin
+                    {
+                        string slug = suppliers.Slug;
+                        //Tên file = Slug + Phần mở rộng của tập tin
+                        string imgName = slug + img.FileName.Substring(img.FileName.LastIndexOf("."));
+                        suppliers.Image = imgName;
+                        //Upload hình
+                        string PathDir = "~/Public/img/supplier/";
+                        string PathFile = Path.Combine(Server.MapPath(PathDir), imgName);
+                        img.SaveAs(PathFile);
+                    }
+                }//Kết thúc upload hình ảnh
                 //Cập nhật mẩu tin vào DB
                 suppliersDAO.Update(suppliers);
                 //Hiển thị thông báo thành công
@@ -174,9 +193,20 @@ namespace THPTUDWeb.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Suppliers suppliers = suppliersDAO.getRow(id);
-            suppliersDAO.Delete(suppliers);
+            //suppliersDAO.Delete(suppliers);
+            string PathDir = "~/Public/img/supplier";
+            if(suppliersDAO.Delete(suppliers) == 1)
+            {
+                //Cập nhập -> xoá file cũ
+                if(suppliers.Image != null)
+                {
+                    string DelPath = Path.Combine(Server.MapPath(PathDir), suppliers.Image);
+                    System.IO.File.Delete(DelPath);
+                }
+            }
+            //Thông báo thành công
             TempData["message"] = new XMessage("success", "Xoá nhà cung cấp thành công");
-            return RedirectToAction("Index");
+            return RedirectToAction("Trash");
         }
         //////////////////////////////////////////////////////////////////////
         // GET: Admin/Category/Status/5
