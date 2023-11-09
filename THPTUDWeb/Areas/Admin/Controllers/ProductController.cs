@@ -14,14 +14,14 @@ namespace THPTUDWeb.Areas.Admin.Controllers
 {
     public class ProductController : Controller
     {
-        ProductsDAO productDAO = new ProductsDAO();
+        ProductsDAO productsDAO = new ProductsDAO();
         SuppliersDAO suppliersDAO = new SuppliersDAO();
         CategoriesDAO categoriesDAO = new CategoriesDAO();
         //////////////////////////////////////////////////////////////////////
         // GET: Admin/product/Index
         public ActionResult Index()
         {
-            return View(productDAO.getList("Index"));
+            return View(productsDAO.getList("Index"));
         }
 
         //////////////////////////////////////////////////////////////////////
@@ -33,7 +33,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 TempData["message"] = new XMessage("danger", "Không tìm thấy loại sản phẩm");
                 return RedirectToAction("Index");
             }
-            Products products = productDAO.getRow(id);
+            Products products = productsDAO.getRow(id);
             if (products == null)
             {
                 TempData["message"] = new XMessage("danger", "Không tìm thấy loại sản phẩm");
@@ -45,8 +45,8 @@ namespace THPTUDWeb.Areas.Admin.Controllers
         // GET: Admin/product/Create
         public ActionResult Create()
         {
-            ViewBag.ListSupList = new SelectList(suppliersDAO.getList("Index"), "Id", "Name");
-            ViewBag.ListCatList = new SelectList(categoriesDAO.getList("Index"), "Id", "Name");
+            ViewBag.ListSupID = new SelectList(suppliersDAO.getList("Index"), "Id", "Name");
+            ViewBag.ListCatID = new SelectList(categoriesDAO.getList("Index"), "Id", "Name");
             return View();
         }
 
@@ -85,7 +85,8 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                         img.SaveAs(PathFile);
                     }
                 }//Kết thúc upload hình ảnh
-                productDAO.Insert(products);
+                //Chèn vào danh sách
+                productsDAO.Insert(products);
                 //Hiển thị thông báo thành công
                 TempData["message"] = new XMessage("success", "Thêm loại sản phẩm mới thành công");
                 return RedirectToAction("Index");
@@ -99,14 +100,14 @@ namespace THPTUDWeb.Areas.Admin.Controllers
         // GET: Admin/product/Edit/5
         public ActionResult Edit(int? id)
         {
-            ViewBag.CatList = new SelectList(productDAO.getList("Index"), "Id", "Name");
-            ViewBag.OrderList = new SelectList(productDAO.getList("Index"), "Order", "Name");
+            ViewBag.CatList = new SelectList(productsDAO.getList("Index"), "Id", "Name");
+            ViewBag.OrderList = new SelectList(productsDAO.getList("Index"), "Order", "Name");
             if (id == null)
             {
                 TempData["message"] = new XMessage("danger", "Cập nhật trạng thái thất bại");
                 return RedirectToAction("Index");
             }
-            Products products = productDAO.getRow(id);
+            Products products = productsDAO.getRow(id);
             if (products == null)
             {
                 TempData["message"] = new XMessage("danger", "Cập nhật trạng thái thất bại");
@@ -131,7 +132,30 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 products.UpdateAt = DateTime.Now;
                 //-----UpdateBy
                 products.UpdateBy = Convert.ToInt32(Session["UserID"]);
-                productDAO.Insert(products);
+                //Xử lý thông tin phần Hình ảnh
+                var img = Request.Files["img"];//Lấy thông tin file
+                string PathDir = "~/Public/img/product/";
+                if (img.ContentLength != 0 && products.Image != null)
+                {
+                    string DelPath = Path.Combine(Server.MapPath(PathDir), products.Image);
+                    System.IO.File.Delete(DelPath);
+                }
+                if (img.ContentLength != 0)
+                {
+                    string[] FileExtentions = new string[] { ".jpg", ".jpeg", ".png", ".gif" };
+                    //kiem tra tap tin co hay khong
+                    if (FileExtentions.Contains(img.FileName.Substring(img.FileName.LastIndexOf("."))))//Lấy phần mở rộng tập tin
+                    {
+                        string slug = products.Slug;
+                        //Tên file = Slug + Phần mở rộng của tập tin
+                        string imgName = slug + img.FileName.Substring(img.FileName.LastIndexOf("."));
+                        products.Image = imgName;
+                        //Upload hình
+                        string PathFile = Path.Combine(Server.MapPath(PathDir), imgName);
+                        img.SaveAs(PathFile);
+                    }
+                }//Kết thúc upload hình ảnh
+                productsDAO.Update(products);
                 //Hiển thị thông báo thành công
                 TempData["message"] = new XMessage("success", "Sửa loại sản phẩm thành công");
 
@@ -151,7 +175,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 //Chuyển hướng trang
                 return RedirectToAction("Trash");
             }
-            Products products = productDAO.getRow(id);
+            Products products = productsDAO.getRow(id);
             if (products == null)
             {
                 //Thông báo thất bại
@@ -167,9 +191,18 @@ namespace THPTUDWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Products products = productDAO.getRow(id);
-            //Tìm thấy mẩu tin => xoá
-            productDAO.Delete(products);
+            Products products = productsDAO.getRow(id);
+            //Tìm hình và xoá hình của nhà cung cấp
+            if (productsDAO.Delete(products) == 1)
+            {
+                //Cập nhập -> xoá file cũ
+                string PathDir = "~/Public/img/product/";
+                if (products.Image != null)
+                {
+                    string DelPath = Path.Combine(Server.MapPath(PathDir), products.Image);
+                    System.IO.File.Delete(DelPath);
+                }
+            }
             //Hiển thị thông báo
             TempData["message"] = new XMessage("success", "Xoá mẩu tin thành công");
             return RedirectToAction("Trash");
@@ -186,7 +219,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 //Chuyển hướng trang
                 return RedirectToAction("Index");
             }
-            Products products = productDAO.getRow(id);
+            Products products = productsDAO.getRow(id);
             if (products == null)
             {
                 //Thông báo thất bại
@@ -201,7 +234,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
             //Cập nhật UpdateAt
             products.UpdateAt = DateTime.Now;
             //Update Database
-            productDAO.Update(products);
+            productsDAO.Update(products);
             //Hiển thị thông báo thành công
             TempData["message"] = new XMessage("success", "Cập nhật trạng thái thành công");
             //Trở về trang Index
@@ -219,7 +252,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 //Chuyển hướng trang
                 return RedirectToAction("Index");
             }
-            Products products = productDAO.getRow(id);
+            Products products = productsDAO.getRow(id);
             if (products == null)
             {
                 //Thông báo thất bại
@@ -234,7 +267,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
             //Cập nhật UpdateAt
             products.UpdateAt = DateTime.Now;
             //Update Database
-            productDAO.Update(products);
+            productsDAO.Update(products);
             //Hiển thị thông báo thành công
             TempData["message"] = new XMessage("success", "Xoá loại sản phẩm thành công");
             //Trở về trang Index
@@ -244,7 +277,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
         // GET: Admin/product/Trash : Thùng rác
         public ActionResult Trash()
         {
-            return View(productDAO.getList("Trash"));
+            return View(productsDAO.getList("Trash"));
         }
 
         //////////////////////////////////////////////////////////////////////
@@ -258,7 +291,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 //Chuyển hướng trang
                 return RedirectToAction("Index");
             }
-            Products products = productDAO.getRow(id);
+            Products products = productsDAO.getRow(id);
             if (products == null)
             {
                 //Thông báo thất bại
@@ -273,7 +306,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
             //Cập nhật UpdateAt
             products.UpdateAt = DateTime.Now;
             //Update Database
-            productDAO.Update(products);
+            productsDAO.Update(products);
             //Hiển thị thông báo thành công
             TempData["message"] = new XMessage("success", "Phục hồi mẩu tin thành công");
             //Ở lại trang Trash để xoá tiếp

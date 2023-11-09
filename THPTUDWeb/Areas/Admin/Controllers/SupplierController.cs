@@ -144,6 +144,12 @@ namespace THPTUDWeb.Areas.Admin.Controllers
 
                 //Xử lý thông tin phần Hình ảnh
                 var img = Request.Files["img"];//Lấy thông tin file
+                string PathDir = "~/Public/img/product/";
+                if (img.ContentLength != 0 && suppliers.Image != null)
+                {
+                    string DelPath = Path.Combine(Server.MapPath(PathDir), suppliers.Image);
+                    System.IO.File.Delete(DelPath);
+                }
                 if (img.ContentLength != 0)
                 {
                     string[] FileExtentions = new string[] { ".jpg", ".jpeg", ".png", ".gif" };
@@ -155,7 +161,6 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                         string imgName = slug + img.FileName.Substring(img.FileName.LastIndexOf("."));
                         suppliers.Image = imgName;
                         //Upload hình
-                        string PathDir = "~/Public/img/supplier/";
                         string PathFile = Path.Combine(Server.MapPath(PathDir), imgName);
                         img.SaveAs(PathFile);
                     }
@@ -193,11 +198,11 @@ namespace THPTUDWeb.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Suppliers suppliers = suppliersDAO.getRow(id);
-            //suppliersDAO.Delete(suppliers);
-            string PathDir = "~/Public/img/supplier";
+            //Tìm hình và xoá hình của nhà cung cấp
             if(suppliersDAO.Delete(suppliers) == 1)
             {
                 //Cập nhập -> xoá file cũ
+                string PathDir = "~/Public/img/supplier/";
                 if(suppliers.Image != null)
                 {
                     string DelPath = Path.Combine(Server.MapPath(PathDir), suppliers.Image);

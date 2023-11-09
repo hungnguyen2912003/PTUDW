@@ -1,7 +1,7 @@
 ﻿@model MyClass.Model.Suppliers
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Thông tin chi tiết nhà cung cấp";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -28,11 +28,11 @@
                         <tr>
                             <th>@Html.DisplayNameFor(model => model.Id)</th>
                             <th>@Html.DisplayNameFor(model => model.Name)</th>
-                            <th>@Html.DisplayNameFor(model => model.Image)</th>
-                            <th>@Html.DisplayNameFor(model => model.Order)</th>
                             <th>@Html.DisplayNameFor(model => model.Fullname)</th>
+                            <th>@Html.DisplayNameFor(model => model.Order)</th>
                             <th>@Html.DisplayNameFor(model => model.Phone)</th>
                             <th>@Html.DisplayNameFor(model => model.Email)</th>
+                            <th>@Html.DisplayNameFor(model => model.Image)</th>
                             <th>@Html.DisplayNameFor(model => model.Status)</th>
                         </tr>
                     </thead>
@@ -41,11 +41,11 @@
                         <tr>
                             <td>@Html.DisplayFor(model => model.Id)</td>
                             <td>@Html.DisplayFor(model => model.Name)</td>
-                            <td><img src="~/Public/img/supplier/@Model.Image" alt="Image" class="img-fluid" /></td>
-                            <td>@Html.DisplayFor(model => model.Order)</td>
                             <td>@Html.DisplayFor(model => model.Fullname)</td>
+                            <td>@Html.DisplayFor(model => model.Order)</td>
                             <td>@Html.DisplayFor(model => model.Phone)</td>
                             <td>@Html.DisplayFor(model => model.Email)</td>
+                            <td><img src="~/Public/img/supplier/@Model.Image" alt="Image" class="img-fluid" /></td>
                             <td>@Html.DisplayFor(model => model.Status)</td>
                         </tr>
                     </tbody>
