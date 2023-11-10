@@ -26,7 +26,7 @@ namespace THPTUDWeb.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-A48U2O3\\HUNGNGUYEN2019;Initial Catalog=master;Integrated Secu" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-2K6LA3N\\HUNGNGUYEN2019;Initial Catalog=master;Integrated Secu" +
             "rity=True")]
         public string StrConnect {
             get {
