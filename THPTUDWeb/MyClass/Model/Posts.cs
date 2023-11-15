@@ -13,26 +13,38 @@ namespace MyClass.Model
 	{
 		[Key]
 		public int Id { get; set; }
-		public int? TopID { get; set; }
-		[Required]
+        [Required(ErrorMessage = "Chủ đề bài viết không được để trống!")]
+        [Display(Name = "Chủ đề bài viết")]
+		public int TopID { get; set; }
+        [Display(Name = "Tên bài viết")]
+        [Required(ErrorMessage = "Tên bài viết không được để trống!")]
 		public string Title { get; set; }
-		public string Slug { get; set; }
-		public string Detail { get; set; }
-		public string Image {  get; set; }
-		public string PostType {  get; set; }
-		[Required]
-		public string MetaDesc {  get; set; }
-		[Required]
-		public string MetaKey { get; set; }
-		[Required]
-		public int CreateBy { get; set; }
-		[Required]
-		public DateTime CreateAt { get; set; }
-		[Required]
-		public int UpdateBy { get; set; }
-		[Required]
-		public DateTime UpdateAt { get; set; }
-		[Required]
-		public int Status { get; set; }
+        [Display(Name = "Liên kết")]
+        public string Slug { get; set; }
+        [Display(Name = "Chi tiết")]
+        public string Detail { get; set; }
+        [Display(Name = "Ảnh bài viết")]
+        public string Image {  get; set; }
+        [Display(Name = "Kiểu bài viết")]
+        public string PostType {  get; set; }
+        [Required(ErrorMessage = "Mô tả không được để trống!")]
+        [Display(Name = "Mô tả")]
+        public string MetaDesc {  get; set; }
+        [Required(ErrorMessage = "Từ khoá không được để trống!")]
+        [Display(Name = "Từ khoá")]
+        public string MetaKey { get; set; }
+        [Required(ErrorMessage = "Người tạo không được để trống!")]
+        [Display(Name = "Người tạo")]
+        public int CreateBy { get; set; }
+        [Required(ErrorMessage = "Ngày tạo không được để trống!")]
+        [Display(Name = "Ngày tạo")]
+        public DateTime CreateAt { get; set; }
+        [Display(Name = "Người cập nhật")]
+        public int? UpdateBy { get; set; }
+        [Display(Name = "Ngày cập nhật")]
+        public DateTime? UpdateAt { get; set; }
+		[Required(ErrorMessage = "Trạng thái không được để trống!")]
+        [Display(Name = "Trạng thái")]
+        public int Status { get; set; }
 	}
 }

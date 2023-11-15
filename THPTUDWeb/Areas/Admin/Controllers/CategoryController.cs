@@ -15,6 +15,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         CategoriesDAO categoriesDAO = new CategoriesDAO();
+        LinksDAO linksDAO = new LinksDAO();
         //////////////////////////////////////////////////////////////////////
         // GET: Admin/Category/Index
         public ActionResult Index()
@@ -79,7 +80,15 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 categories.UpdateAt = DateTime.Now;
                 //-----UpdateBy
                 categories.UpdateBy = Convert.ToInt32(Session["UserID"]);
-                categoriesDAO.Insert(categories);
+                //-----Xử lý mục Topics
+                if(categoriesDAO.Insert(categories) == 1)       //Nếu thêm dữ liệu thành công
+                {
+                    Links links = new Links();
+                    links.Slug = categories.Slug;
+                    links.TableID = categories.Id;
+                    links.Type = "category";
+                    linksDAO.Insert(links);
+                }
                 //Hiển thị thông báo thành công
                 TempData["message"] = new XMessage("success", "Thêm loại sản phẩm mới thành công");
                 return RedirectToAction("Index");
@@ -139,7 +148,15 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 categories.UpdateAt = DateTime.Now;
                 //-----UpdateBy
                 categories.UpdateBy = Convert.ToInt32(Session["UserID"]);
-                categoriesDAO.Insert(categories);
+                //Cập nhật dữ liệu, sửa thêm phần Links phục vụ cho Topics
+                //Nếu trùng khớp thông tin: Type = category & TableID = categories.ID
+                Links links = linksDAO.getRow(categories.Id, "category");
+                if(categoriesDAO.Update(categories) == 1)
+                {
+                    //Cập nhật dữ liệu
+                    links.Slug = categories.Slug;
+                    linksDAO.Update(links);
+                }
                 //Hiển thị thông báo thành công
                 TempData["message"] = new XMessage("success", "Sửa loại sản phẩm thành công");
 
@@ -176,8 +193,13 @@ namespace THPTUDWeb.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Categories categories = categoriesDAO.getRow(id);
-            //Tìm thấy mẩu tin => xoá
-            categoriesDAO.Delete(categories);
+            //Tìm thấy mẩu tin => xoá, cập nhật cho Links
+            if(categoriesDAO.Delete(categories) == 1)
+            {
+                Links links = linksDAO.getRow(categories.Id, "category");
+                //Xoá luôn cho Links
+                linksDAO.Delete(links);
+            }
             //Hiển thị thông báo
             TempData["message"] = new XMessage("success", "Xoá mẩu tin thành công");
             return RedirectToAction("Trash");
