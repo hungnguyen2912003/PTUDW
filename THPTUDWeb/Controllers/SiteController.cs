@@ -12,9 +12,6 @@ namespace THPTUDWeb.Controllers
         // GET: Site
         public ActionResult Index()
         {
-            MyDBContext db = new MyDBContext(); //Tao Database
-            int sodong = db.Products.Count();
-            ViewBag.sodong = sodong;
             return View();
         }
     }
