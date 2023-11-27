@@ -16,9 +16,9 @@ namespace MyClass.Model
         [Required(ErrorMessage = "Tên nhà cung cấp không được để trống")]
         [Display(Name = "Tên nhà cung cấp")]
         public string Name { get; set; }
-        [Display(Name = "Hình ảnh")]
+        [Display(Name = "Hình ảnh nhà cung cấp")]
         public string Image {  get; set; }
-        [Display(Name = "Link rút gọn")]
+        [Display(Name = "Liên kết")]
         public string Slug { get; set; }
         [Display(Name = "Sắp xếp")]
         public int? Order { get; set; }

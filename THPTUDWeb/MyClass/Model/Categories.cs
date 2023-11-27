@@ -13,10 +13,10 @@ namespace MyClass.Model
 	{
 		[Key]
 		public int Id { get; set; }
-		[Display(Name = "Tên loại hàng")]
+		[Display(Name = "Tên loại sản phẩm")]
 		[Required(ErrorMessage = "Tên loại sản phẩm không được để trống")]
 		public string Name { get; set; }
-		[Display(Name = "Tên rút gọn")]
+		[Display(Name = "Liên kết")]
 		public string Slug { get; set; }
 		[Display(Name = "Cấp cha")]
 		public int? ParentID { get; set; }
@@ -36,7 +36,6 @@ namespace MyClass.Model
 		public int? UpdateBy { get; set; }
 		[Display(Name = "Ngày cập nhật")]
 		public DateTime? UpdateAt { get; set; }
-		[Required(ErrorMessage = "Phần trạng thái không được để trống")]
 		[Display(Name = "Trạng thái")]
 		public int Status { get; set; }
 	}

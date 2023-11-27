@@ -13,42 +13,48 @@ namespace MyClass.DAO
     {
         private MyDBContext db = new MyDBContext();
 
-        //INDEX
         public List<Links> getList()
         {
             return db.Links.ToList();
         }
-
-        //INDEX dựa vào Status = 1, 2, còn Status = 0 == Thùng rác
+        //Hiển thị danh sách toàn bộ Loại sản phẩm: SELCT * FROM
         public List<Links> getList(string status = "All")
         {
             List<Links> list = null;
             return list;
         }
-
-        //Hiển thị danh sách 1 mẩu tin
+        //Hiển thị danh sách 1 mẩu tin (bản ghi)
         public Links getRow(int tableid, string typelink)
         {
             return db.Links
-                .Where(model => model.TableID == tableid && model.Type == typelink)
+                .Where(m => m.TableID == tableid && m.Type == typelink)
                 .FirstOrDefault();
         }
+        /////////////////////////////////////////////////////////////////////////////////////
+        //Hiển thị danh sách 1 mẩu tin (bản ghi) với kiểu string = slug
+        public Links getRow(string slug)
+        {
 
-        //Thêm một mẩu tin mới
+            return db.Links
+                .Where(m => m.Slug == slug)
+                .FirstOrDefault();
+        }
+        /////////////////////////////////////////////////////////////////////////////////////
+        ///Thêm mới một mẩu tin
         public int Insert(Links row)
         {
             db.Links.Add(row);
             return db.SaveChanges();
         }
-
-        //Cập nhật mẩu tin
+        /////////////////////////////////////////////////////////////////////////////////////
+        ///Cập nhật một mẩu tin
         public int Update(Links row)
         {
             db.Entry(row).State = EntityState.Modified;
             return db.SaveChanges();
         }
-
-        //Xoá mẩu tin ra khỏi DB
+        /////////////////////////////////////////////////////////////////////////////////////
+        ///Xoá một mẩu tin ra khỏi CSDL
         public int Delete(Links row)
         {
             db.Links.Remove(row);

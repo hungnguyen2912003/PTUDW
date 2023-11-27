@@ -13,7 +13,6 @@ namespace MyClass.Model
 	{
 		[Key]
 		public int Id { get; set; }
-		[Required]
 		public int UserID { get; set; }
 		public string FullName { get; set; }
 		public string Phone { get; set; }
@@ -22,7 +21,6 @@ namespace MyClass.Model
 		public string Title { get; set; }
 		[Required]
 		public string Detail { get; set; }
-		[Required]
 		public DateTime CreateAt { get; set; }
 		[Required]
 		public int UpdateBy { get; set; }

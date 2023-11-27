@@ -13,13 +13,11 @@ namespace MyClass.DAO
 	{
         private MyDBContext db = new MyDBContext();
 
-        //INDEX
         public List<Categories> getList()
         {
             return db.Categories.ToList();
         }
-
-        //INDEX dựa vào Status = 1, 2, còn Status = 0 == Thùng rác
+        //Hiển thị danh sách toàn bộ Loại sản phẩm: SELCT * FROM
         public List<Categories> getList(string status = "All")
         {
             List<Categories> list = null;
@@ -28,15 +26,15 @@ namespace MyClass.DAO
                 case "Index":
                     {
                         list = db.Categories
-                            .Where(m => m.Status != 0)
-                            .ToList();
+                        .Where(m => m.Status != 0)
+                        .ToList();
                         break;
                     }
                 case "Trash":
                     {
                         list = db.Categories
-                            .Where(m => m.Status == 0)
-                            .ToList();
+                        .Where(m => m.Status == 0)
+                        .ToList();
                         break;
                     }
                 default:
@@ -47,8 +45,7 @@ namespace MyClass.DAO
             }
             return list;
         }
-
-        //DETAILS
+        //Hiển thị danh sách 1 mẩu tin (bản ghi)
         public Categories getRow(int? id)
         {
             if (id == null)
@@ -60,26 +57,43 @@ namespace MyClass.DAO
                 return db.Categories.Find(id);
             }
         }
+        /////////////////////////////////////////////////////////////////////////////////////
+        //Hiển thị danh sách 1 mẩu tin (bản ghi) với kiểu string = slug
+        public Categories getRow(string slug)
+        {
 
-        //CREATE
+            return db.Categories
+                .Where(m => m.Slug == slug && m.Status == 1)
+                .FirstOrDefault();
+        }
+        /////////////////////////////////////////////////////////////////////////////////////
+        ///Thêm mới một mẩu tin
         public int Insert(Categories row)
         {
             db.Categories.Add(row);
             return db.SaveChanges();
         }
-
-        //UPDATE
+        /////////////////////////////////////////////////////////////////////////////////////
+        ///Cập nhật một mẩu tin
         public int Update(Categories row)
         {
             db.Entry(row).State = EntityState.Modified;
             return db.SaveChanges();
         }
-
-        //DELETE
+        /////////////////////////////////////////////////////////////////////////////////////
+        ///Xoá một mẩu tin ra khỏi CSDL
         public int Delete(Categories row)
         {
             db.Categories.Remove(row);
             return db.SaveChanges();
+        }
+        /////////////////////////////////////////////////////////////////////////////////////
+        public List<Categories> getListByPareantId(int parentid = 0)
+        {
+            return db.Categories
+              .Where(m => m.ParentID == parentid && m.Status == 1)
+              .OrderBy(m => m.Order)
+              .ToList();
         }
     }
 }

@@ -31,17 +31,14 @@ namespace MyClass.Model
         [Display(Name = "Người tạo")]
         [Required(ErrorMessage = "Người tạo không để trống")]
         public DateTime CreateAt { get; set; }
-        [Display(Name = "Người tạo")]
-        [Required(ErrorMessage = "Người tạo không để trống")]
+        [Display(Name = "Ngày tạo")]
+        [Required(ErrorMessage = "Ngày tạo không để trống")]
         public int CreateBy { get; set; }
         [Display(Name = "Ngày cập nhật")]
-        [Required(ErrorMessage = "Ngày cập nhật không để trống")]
         public DateTime UpdateAt { get; set; }
         [Display(Name = "Người cập nhật")]
-        [Required(ErrorMessage = "Người cập nhật không để trống")]
         public int UpdateBy { get; set; }
         [Display(Name = "Trạng thái")]
-        [Required(ErrorMessage = "Trạng thái không để trống")]
         public int Status { get; set; }
 
     }

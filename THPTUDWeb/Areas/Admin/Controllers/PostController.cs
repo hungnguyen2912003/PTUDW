@@ -10,6 +10,7 @@ using MyClass.Model;
 using MyClass.DAO;
 using THPTUDWeb.Library;
 using System.IO;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace THPTUDWeb.Areas.Admin.Controllers
 {
@@ -19,14 +20,14 @@ namespace THPTUDWeb.Areas.Admin.Controllers
         LinksDAO linksDAO = new LinksDAO();
         TopicsDAO topicsDAO = new TopicsDAO();
         //////////////////////////////////////////////////////////////////////
-        // GET: Admin/Post/Index
+        // GET: Admin/Post/Index: Trả về danh sách các mẩu tin
         public ActionResult Index()
         {
-            return View(postsDAO.getList("Index"));
+            return View(postsDAO.getList("Index")); //Hiển thị danh sách
         }
 
         //////////////////////////////////////////////////////////////////////
-        // GET: Admin/Post/Details/5
+        // GET: Admin/Post/Details/5: Hiển thị một mẩu tin
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -42,8 +43,8 @@ namespace THPTUDWeb.Areas.Admin.Controllers
             }
             return View(posts);
         }
-
-        // GET: Admin/Post/Create
+        //////////////////////////////////////////////////////////////////////
+        // GET: Admin/Post/Create: Thêm một mẩu tin
         public ActionResult Create()
         {
             ViewBag.TopicList = new SelectList(topicsDAO.getList("Index"), "Id", "Name");
@@ -72,12 +73,13 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 if (img.ContentLength != 0)
                 {
                     string[] FileExtentions = new string[] { ".jpg", ".jpeg", ".png", ".gif" };
-                    //kiem tra tap tin co hay khong
+                    //Kiểm tra tập tin có hay không?
                     if (FileExtentions.Contains(img.FileName.Substring(img.FileName.LastIndexOf("."))))//Lấy phần mở rộng tập tin
                     {
                         string slug = posts.Slug;
-                        //Tên file = Slug + Phần mở rộng của tập tin
-                        string imgName = slug + img.FileName.Substring(img.FileName.LastIndexOf("."));
+                        string id = posts.Id.ToString();
+                        //Tên file = Slug + id + Phần mở rộng của tập tin
+                        string imgName = slug + id + img.FileName.Substring(img.FileName.LastIndexOf("."));
                         posts.Image = imgName;
                         //Upload hình
                         string PathDir = "~/Public/img/post/";
@@ -97,7 +99,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                     linksDAO.Insert(links);
                 }
                 //Hiển thị thông báo thành công
-                TempData["message"] = new XMessage("success", "Thêm loại bài viết thành công");
+                TempData["message"] = new XMessage("success", "Thêm bài viết thành công");
                 return RedirectToAction("Index");
             }
             ViewBag.TopicList = new SelectList(topicsDAO.getList("Index"), "Id", "Name");
@@ -105,19 +107,19 @@ namespace THPTUDWeb.Areas.Admin.Controllers
         }
 
         //////////////////////////////////////////////////////////////////////
-        // GET: Admin/Post/Edit/5
+        // GET: Admin/Post/Edit/5: Cập nhật mẩu tin
         public ActionResult Edit(int? id)
         {
             ViewBag.TopicList = new SelectList(topicsDAO.getList("Index"), "Id", "Name");
             if (id == null)
             {
-                TempData["message"] = new XMessage("danger", "Cập nhật trạng thái thất bại");
+                TempData["message"] = new XMessage("danger", "Chỉnh sửa bài viết thất bại");
                 return RedirectToAction("Index");
             }
             Posts posts = postsDAO.getRow(id);
             if (posts == null)
             {
-                TempData["message"] = new XMessage("danger", "Cập nhật trạng thái thất bại");
+                TempData["message"] = new XMessage("danger", "Chỉnh sửa bài viết thất bại");
                 return RedirectToAction("Index");
             }
             return View(posts);
@@ -143,8 +145,16 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 //posts.PostType = "post";
                 //Xử lý thông tin phần Hình ảnh
                 var img = Request.Files["img"];//Lấy thông tin file
+                //Upload hình
+                string PathDir = "~/Public/img/post/";
                 if (img.ContentLength != 0)
                 {
+                    //Update thì phải xoá ảnh cũ
+                    if (posts.Image != null)
+                    {
+                        string DelPath = Path.Combine(Server.MapPath(PathDir), posts.Image);
+                        System.IO.File.Delete(DelPath);
+                    }
                     string[] FileExtentions = new string[] { ".jpg", ".jpeg", ".png", ".gif" };
                     //kiem tra tap tin co hay khong
                     if (FileExtentions.Contains(img.FileName.Substring(img.FileName.LastIndexOf("."))))//Lấy phần mở rộng tập tin
@@ -153,24 +163,16 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                         //Tên file = Slug + Phần mở rộng của tập tin
                         string imgName = slug + img.FileName.Substring(img.FileName.LastIndexOf("."));
                         posts.Image = imgName;
-                        //Upload hình
-                        string PathDir = "~/Public/img/post/";
                         string PathFile = Path.Combine(Server.MapPath(PathDir), imgName);
-                        //Update thì phải xoá ảnh cũ
-                        if (posts.Image != null)
-                        {
-                            string DelPath = Path.Combine(Server.MapPath(PathDir), posts.Image);
-                            System.IO.File.Delete(DelPath);
-                        }
                         img.SaveAs(PathFile);
                     }
                 }//Kết thúc upload hình ảnh
                 //Cập nhật dữ liệu, sửa thêm phần Links phục vụ cho Topics
                 //Nếu trùng khớp thông tin: Type = category & TableID = posts.ID
-                Links links = linksDAO.getRow(posts.Id, "post");
                 if (postsDAO.Update(posts) == 1)
                 {
                     //Cập nhật dữ liệu
+                    Links links = new Links();
                     links.Slug = posts.Slug;
                     links.TableID = posts.Id;
                     links.Type = "post";
@@ -181,6 +183,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
 
                 return RedirectToAction("Index");
             }
+            ViewBag.TopList = new SelectList(topicsDAO.getList("Index"), "Id", "Name");
             return View(posts);
         }
 
@@ -191,7 +194,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
             if (id == null)
             {
                 //Thông báo thất bại
-                TempData["message"] = new XMessage("danger", "Xoá mẩu tin thất bại");
+                TempData["message"] = new XMessage("danger", "Xoá bài viết thất bại");
                 //Chuyển hướng trang
                 return RedirectToAction("Trash");
             }
@@ -199,7 +202,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
             if (posts == null)
             {
                 //Thông báo thất bại
-                TempData["message"] = new XMessage("danger", "Xoá mẩu tin thất bại");
+                TempData["message"] = new XMessage("danger", "Xoá bài viết thất bại");
                 //Chuyển hướng trang
                 return RedirectToAction("Trash");
             }
@@ -228,7 +231,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 }
             }
             //Hiển thị thông báo
-            TempData["message"] = new XMessage("success", "Xoá mẩu tin thành công");
+            TempData["message"] = new XMessage("success", "Xoá bài viết thành công");
             return RedirectToAction("Trash");
         }
 
@@ -266,7 +269,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
         }
 
         //////////////////////////////////////////////////////////////////////
-        // GET: Admin/Post/DelTrash/5
+        // GET: Admin/Post/DelTrash/5: Thay đổi trạng thái của mẩu tin = 0
         public ActionResult DelTrash(int? id)
         {
             if (id == null)
@@ -305,13 +308,13 @@ namespace THPTUDWeb.Areas.Admin.Controllers
         }
 
         //////////////////////////////////////////////////////////////////////
-        // GET: Admin/Post/Undo/5
+        // GET: Admin/Post/Undo/5: Chuyển trạng thái Stauts = 0 thành = 2
         public ActionResult Undo(int? id)
         {
             if (id == null)
             {
                 //Thông báo thất bại
-                TempData["message"] = new XMessage("danger", "Phục hồi mẩu tin thất bại");
+                TempData["message"] = new XMessage("danger", "Phục hồi bài viết thất bại");
                 //Chuyển hướng trang
                 return RedirectToAction("Index");
             }
@@ -319,7 +322,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
             if (posts == null)
             {
                 //Thông báo thất bại
-                TempData["message"] = new XMessage("danger", "Phục hồi mẩu tin thất bại");
+                TempData["message"] = new XMessage("danger", "Phục hồi bài viết thất bại");
                 //Chuyển hướng trang
                 return RedirectToAction("Index");
             }
@@ -332,7 +335,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
             //Update Database
             postsDAO.Update(posts);
             //Hiển thị thông báo thành công
-            TempData["message"] = new XMessage("success", "Phục hồi mẩu tin thành công");
+            TempData["message"] = new XMessage("success", "Phục hồi bài viết thành công");
             //Ở lại trang Trash để xoá tiếp
             return RedirectToAction("Trash");
         }

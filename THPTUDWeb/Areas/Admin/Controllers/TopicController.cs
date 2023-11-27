@@ -17,14 +17,15 @@ namespace THPTUDWeb.Areas.Admin.Controllers
         TopicsDAO topicsDAO = new TopicsDAO();
         LinksDAO linksDAO = new LinksDAO();
         //////////////////////////////////////////////////////////////////////
-        // GET: Admin/Category/Index
+        // GET: Admin/Category/Index: Trả về danh sách các mẩu tin
         public ActionResult Index()
         {
+            //Hiển thị toàn bộ danh sách các chủ đề
             return View(topicsDAO.getList("Index"));
         }
 
         //////////////////////////////////////////////////////////////////////
-        // GET: Admin/Category/Details/5
+        // GET: Admin/Category/Details/5: Hiển thị thông tin một mẩu tin
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -172,7 +173,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
             if (id == null)
             {
                 //Thông báo thất bại
-                TempData["message"] = new XMessage("danger", "Xoá mẩu tin thất bại");
+                TempData["message"] = new XMessage("danger", "Xoá chủ đề bài viết thất bại");
                 //Chuyển hướng trang
                 return RedirectToAction("Trash");
             }
@@ -180,7 +181,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
             if (topics == null)
             {
                 //Thông báo thất bại
-                TempData["message"] = new XMessage("danger", "Xoá mẩu tin thất bại");
+                TempData["message"] = new XMessage("danger", "Xoá chủ đề bài viết thất bại");
                 //Chuyển hướng trang
                 return RedirectToAction("Trash");
             }
@@ -201,7 +202,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 linksDAO.Delete(links);
             }
             //Hiển thị thông báo
-            TempData["message"] = new XMessage("success", "Xoá mẩu tin thành công");
+            TempData["message"] = new XMessage("success", "Xoá chủ dề bài viết thành công");
             return RedirectToAction("Trash");
         }
 
@@ -284,7 +285,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
             if (id == null)
             {
                 //Thông báo thất bại
-                TempData["message"] = new XMessage("danger", "Phục hồi mẩu tin thất bại");
+                TempData["message"] = new XMessage("danger", "Phục hồi chủ đề bài viết thất bại");
                 //Chuyển hướng trang
                 return RedirectToAction("Index");
             }
@@ -292,7 +293,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
             if (topics == null)
             {
                 //Thông báo thất bại
-                TempData["message"] = new XMessage("danger", "Phục hồi mẩu tin thất bại");
+                TempData["message"] = new XMessage("danger", "Phục hồi chủ đề bài viết thất bại");
                 //Chuyển hướng trang
                 return RedirectToAction("Index");
             }
@@ -305,7 +306,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
             //Update Database
             topicsDAO.Update(topics);
             //Hiển thị thông báo thành công
-            TempData["message"] = new XMessage("success", "Phục hồi mẩu tin thành công");
+            TempData["message"] = new XMessage("success", "Phục hồi chủ đề bài viết thành công");
             //Ở lại trang Trash để xoá tiếp
             return RedirectToAction("Trash");
         }

@@ -34,7 +34,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
             Suppliers suppliers = suppliersDAO.getRow(id);
             if (suppliers == null)
             {
-                TempData["message"] = new XMessage("danger", "Không tìm thấy loại sản phẩm");
+                TempData["message"] = new XMessage("danger", "Không tìm thấy nhà cung cấp");
                 return RedirectToAction("Index");
             }
             return View(suppliers);

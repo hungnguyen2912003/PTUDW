@@ -13,22 +13,16 @@ namespace MyClass.Model
 	{
 		[Key]
 		public int Id { get; set; }
-		[Required]
 		public int UserID { get; set; }
 		[Required]
 		public string ReceiverAddress { get; set; }
 		[Required]
 		public string ReceiverPhone { get; set; }
 		public string Note { get; set; }
-		[Required]
 		public int CreateBy { get; set; }
-		[Required]
 		public DateTime CreateAt { get; set; }
-		[Required]
 		public int UpdateBy { get; set; }
-		[Required]
 		public DateTime UpdateAt { get; set; }
-		[Required]
 		public int Status { get; set; }
 	}
 }

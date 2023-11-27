@@ -17,28 +17,25 @@ namespace MyClass.DAO
         {
             return db.Menus.ToList();
         }
-
-        public List<Menus> getListByParentId(int parentid = 0)
-        {
-            return db.Menus
-                .Where(m => m.ParentID == parentid && m.Status == 1)
-                .ToList();
-        }
-
-        //Index chi voi staus 1,2        
-        public List<Menus> getList(string status = "ALL")//status 0,1,2
+        /////////////////////////////////////////////////////////////////////////////////////
+        //Hiển thị danh sách toàn bộ Loại sản phẩm: SELCT * FROM    
+        public List<Menus> getList(string status = "All")
         {
             List<Menus> list = null;
             switch (status)
             {
-                case "Index"://1,2
+                case "Index":
                     {
-                        list = db.Menus.Where(m => m.Status != 0).ToList();
+                        list = db.Menus
+                        .Where(m => m.Status != 0)
+                        .ToList();
                         break;
                     }
-                case "Trash"://0
+                case "Trash":
                     {
-                        list = db.Menus.Where(m => m.Status == 0).ToList();
+                        list = db.Menus
+                        .Where(m => m.Status == 0)
+                        .ToList();
                         break;
                     }
                 default:
@@ -49,7 +46,8 @@ namespace MyClass.DAO
             }
             return list;
         }
-        //details
+        /////////////////////////////////////////////////////////////////////////////////////
+        //Hiển thị danh sách 1 mẩu tin (bản ghi)
         public Menus getRow(int? id)
         {
             if (id == null)
@@ -61,23 +59,35 @@ namespace MyClass.DAO
                 return db.Menus.Find(id);
             }
         }
-        //tao moi mau tin
+        /////////////////////////////////////////////////////////////////////////////////////
+        ///Thêm mới một mẩu tin
         public int Insert(Menus row)
         {
             db.Menus.Add(row);
             return db.SaveChanges();
         }
-        //cap nhat mau tin
+        /////////////////////////////////////////////////////////////////////////////////////
+        ///Cập nhật một mẩu tin
         public int Update(Menus row)
         {
             db.Entry(row).State = EntityState.Modified;
             return db.SaveChanges();
         }
-        //Xoa mau tin
+        /////////////////////////////////////////////////////////////////////////////////////
+        ///Xoá một mẩu tin ra khỏi CSDL
         public int Delete(Menus row)
         {
             db.Menus.Remove(row);
             return db.SaveChanges();
+        }
+        /////////////////////////////////////////////////////////////////////////////////////
+        //Hiển thị danh sách thoả 2 điều kiện cho trang người dùng
+        public List<Menus> getListByParentId(int parentid, string position)
+        {
+            return db.Menus
+                    .Where(m => m.ParentID == parentid && m.Status == 1 && m.Position == position)
+                    .OrderBy(m => m.Order)
+                    .ToList();
         }
     }
 }

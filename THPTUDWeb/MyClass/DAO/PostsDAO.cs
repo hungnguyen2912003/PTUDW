@@ -13,14 +13,13 @@ namespace MyClass.DAO
     {
         private MyDBContext db = new MyDBContext();
 
-        //INDEX
         public List<Posts> getList()
         {
             return db.Posts.ToList();
         }
-
-        //INDEX dựa vào Status = 1, 2, còn Status = 0 == Thùng rác
-        public List<Posts> getList(string status = "All")
+        /////////////////////////////////////////////////////////////////////////////////////
+        //Hiển thị danh sách toàn bộ Loại sản phẩm: SELCT * FROM
+        public List<Posts> getList(string status = "All", string type = "Post")
         {
             List<Posts> list = null;
             switch (status)
@@ -28,27 +27,29 @@ namespace MyClass.DAO
                 case "Index":
                     {
                         list = db.Posts
-                            .Where(m => m.Status != 0)
-                            .ToList();
+                        .Where(m => m.Status != 0 && m.PostType == type)
+                        .ToList();
                         break;
                     }
                 case "Trash":
                     {
                         list = db.Posts
-                            .Where(m => m.Status == 0)
-                            .ToList();
+                        .Where(m => m.Status == 0 && m.PostType == type)
+                        .ToList();
                         break;
                     }
                 default:
                     {
-                        list = db.Posts.ToList();
+                        list = db.Posts
+                            .Where(m => m.PostType == type)
+                            .ToList();
                         break;
                     }
             }
             return list;
         }
-
-        //DETAILS
+        /////////////////////////////////////////////////////////////////////////////////////
+        //Hiển thị danh sách 1 mẩu tin (bản ghi)
         public Posts getRow(int? id)
         {
             if (id == null)
@@ -60,22 +61,30 @@ namespace MyClass.DAO
                 return db.Posts.Find(id);
             }
         }
-
-        //CREATE
+        /////////////////////////////////////////////////////////////////////////////////////
+        //Hiển thị danh sách 1 mẩu tin (bản ghi) với kiểu string = slug
+        public Posts getRow(string slug)
+        {
+            return db.Posts
+                    .Where(m => m.Slug == slug && m.Status == 1)
+                    .FirstOrDefault();
+        }
+        /////////////////////////////////////////////////////////////////////////////////////
+        ///Thêm mới một mẩu tin
         public int Insert(Posts row)
         {
             db.Posts.Add(row);
             return db.SaveChanges();
         }
-
-        //UPDATE
+        /////////////////////////////////////////////////////////////////////////////////////
+        ///Cập nhật một mẩu tin
         public int Update(Posts row)
         {
             db.Entry(row).State = EntityState.Modified;
             return db.SaveChanges();
         }
-
-        //DELETE
+        /////////////////////////////////////////////////////////////////////////////////////
+        ///Xoá một mẩu tin ra khỏi CSDL
         public int Delete(Posts row)
         {
             db.Posts.Remove(row);

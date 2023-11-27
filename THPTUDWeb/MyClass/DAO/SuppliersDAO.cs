@@ -11,14 +11,12 @@ namespace MyClass.DAO
     public class SuppliersDAO
     {
         private MyDBContext db = new MyDBContext();
-
-        //INDEX
+        /////////////////////////////////////////////////////////////////////////////////////
+        //Hiển thị danh sách toàn bộ Loại sản phẩm: SELCT * FROM
         public List<Suppliers> getList()
         {
             return db.Suppliers.ToList();
         }
-
-        //INDEX dựa vào Status = 1, 2, còn Status = 0 == Thùng rác
         public List<Suppliers> getList(string status = "All")
         {
             List<Suppliers> list = null;
@@ -46,8 +44,8 @@ namespace MyClass.DAO
             }
             return list;
         }
-
-        //DETAILS
+        /////////////////////////////////////////////////////////////////////////////////////
+        //Hiển thị danh sách 1 mẩu tin (bản ghi)
         public Suppliers getRow(int? id)
         {
             if (id == null)
@@ -59,22 +57,22 @@ namespace MyClass.DAO
                 return db.Suppliers.Find(id);
             }
         }
-
-        //CREATE
+        /////////////////////////////////////////////////////////////////////////////////////
+        ///Thêm mới một mẩu tin
         public int Insert(Suppliers row)
         {
             db.Suppliers.Add(row);
             return db.SaveChanges();
         }
-
-        //UPDATE
+        /////////////////////////////////////////////////////////////////////////////////////
+        ///Cập nhật một mẩu tin
         public int Update(Suppliers row)
         {
             db.Entry(row).State = EntityState.Modified;
             return db.SaveChanges();
         }
-
-        //DELETE
+        /////////////////////////////////////////////////////////////////////////////////////
+        ///Xoá một mẩu tin ra khỏi CSDL
         public int Delete(Suppliers row)
         {
             db.Suppliers.Remove(row);
