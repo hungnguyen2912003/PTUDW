@@ -31,7 +31,7 @@ namespace THPTUDWeb.Library
             return s;
         }
 
-        //Ma hoa Password
+        //Mã hoá Password
         public static string ToMD5(this string str)
         {
             MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();

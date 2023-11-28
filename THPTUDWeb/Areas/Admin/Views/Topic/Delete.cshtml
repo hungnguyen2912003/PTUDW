@@ -5,6 +5,15 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+@section header {
+    <link href="~/Public/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+
+@section footer {
+    <script src="~/Public/js/jquery.dataTables.min.js"></script>
+    <script>let table = new DataTable('#myTable');</script>
+}
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

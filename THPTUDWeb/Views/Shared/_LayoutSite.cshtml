@@ -29,12 +29,16 @@
 <body>
     <!--================ Start Header Menu Area =================-->
     <header class="header_area">
-        @Html.Action("MainMenu", "Module")
+        <div class="main_menu">
+            @Html.Action("MainMenu", "Module")
+        </div>
     </header>
     <!--================ End Header Menu Area =================-->
-
-    @RenderBody()
-
+    <!--================ BODY trỏ về trang Index =================-->
+    <main class="site-main">
+        <section class="body-content clearfix">@RenderBody()</section>
+    </main>
+    <!--================ End BODY Area =================-->
     <!--================ Start footer Area  =================-->
     <footer class="footer">
         <div class="footer-area">
@@ -52,32 +56,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
-                        <div class="single-footer-widget tp_widgets">
-                            <h4 class="footer_title">Quick Links</h4>
-                            <ul class="list">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Shop</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Product</a></li>
-                                <li><a href="#">Brand</a></li>
-                                <li><a href="#">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6 col-sm-6">
-                        <div class="single-footer-widget instafeed">
-                            <h4 class="footer_title">Gallery</h4>
-                            <ul class="list instafeed d-flex flex-wrap">
-                                <li><img src="Public/img/gallery/r1.jpg" alt=""></li>
-                                <li><img src="Public/img/gallery/r2.jpg" alt=""></li>
-                                <li><img src="Public/img/gallery/r3.jpg" alt=""></li>
-                                <li><img src="Public/img/gallery/r5.jpg" alt=""></li>
-                                <li><img src="Public/img/gallery/r7.jpg" alt=""></li>
-                                <li><img src="Public/img/gallery/r8.jpg" alt=""></li>
-                            </ul>
-                        </div>
-                    </div>
+                    @Html.Action("MenuFooter","Module")
                     <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
                         <div class="single-footer-widget tp_widgets">
                             <h4 class="footer_title">Contact Us</h4>
@@ -124,8 +103,9 @@
                 </div>
             </div>
         </div>
+        @RenderSection("footer", required: false)
     </footer>
     <!--================ End footer Area  =================-->
-    @RenderSection("header", required: false)
+
 </body>
 </html>

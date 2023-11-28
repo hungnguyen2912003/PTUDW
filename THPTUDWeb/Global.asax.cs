@@ -17,11 +17,16 @@ namespace THPTUDWeb
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
 		}
-		//Tao moi Session
+		//Tạo mới Session
 		protected void Session_Start()
 		{
-			Session["UserID"] = "1";
-		}
+            //Lưu mã người đăng nhập quản lý
+            Session["UserID"] = "1";
+            Session["MyCart"] = "";//Khởi tạo giá trị = NULL
+			//Lưu thông tin đăng nhập của người dùng
+            Session["UserCustomer"] = "";
 
-	}
+        }
+
+    }
 }

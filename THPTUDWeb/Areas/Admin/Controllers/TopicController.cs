@@ -87,7 +87,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                     Links links = new Links();
                     links.Slug = topics.Slug;
                     links.TableID = topics.Id;
-                    links.Type = "category";
+                    links.Type = "topic";
                     linksDAO.Insert(links);
                 }
                 //Hiển thị thông báo thành công
@@ -197,7 +197,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
             //Tìm thấy mẩu tin => xoá, cập nhật cho Links
             if (topicsDAO.Delete(topics) == 1)
             {
-                Links links = linksDAO.getRow(topics.Id, "category");
+                Links links = linksDAO.getRow(topics.Id, "topic");
                 //Xoá luôn cho Links
                 linksDAO.Delete(links);
             }

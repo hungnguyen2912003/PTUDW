@@ -13,12 +13,6 @@ namespace THPTUDWeb.Controllers
     {
         // GET: Module
         MenusDAO menusDAO = new MenusDAO();
-        ///////////////////////////////////////////////////////////////////
-        //GET: MainMenu
-        public ActionResult Index()
-        {
-            return View();
-        }
         ///////////////////////////////////////////////////////////////////////////
         // GET: Mainmenu
         public ActionResult MainMenu()
@@ -43,6 +37,7 @@ namespace THPTUDWeb.Controllers
                 return View("MainMenuSub_1", list);
             }
         }
+        ///////////////////////////////////////////////////////////////////////////
         public ActionResult Slider()
         {
             SlidersDAO slidersDAO = new SlidersDAO();
@@ -59,5 +54,13 @@ namespace THPTUDWeb.Controllers
 
         }
 
+        ///////////////////////////////////////////////////////////////////////////
+        ///Footer Menu
+        public ActionResult MenuFooter()
+        {
+            MenusDAO menusDAO = new MenusDAO();
+            List<Menus> list = menusDAO.getListByParentId(0, "Footer");
+            return View("MenuFooter", list);
+        }
     }
 }

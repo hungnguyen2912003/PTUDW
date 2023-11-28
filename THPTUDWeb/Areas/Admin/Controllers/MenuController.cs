@@ -14,27 +14,29 @@ namespace THPTUDWeb.Areas.Admin.Controllers
 {
     public class MenuController : Controller
     {
-        //Gọi 4 lớp DAO cần thực thi
         CategoriesDAO categoriesDAO = new CategoriesDAO();
         SuppliersDAO suppliersDAO = new SuppliersDAO();
         ProductsDAO productsDAO = new ProductsDAO();
-        MenusDAO menusDAO = new MenusDAO();
         TopicsDAO topicsDAO = new TopicsDAO();
         PostsDAO postsDAO = new PostsDAO();
+        MenusDAO menusDAO = new MenusDAO();
         /// /////////////////////////////////////////////////////////////
         // GET: Admin/Menu/Index
         public ActionResult Index()
         {
             //select * from Categories voi Status !=0
             ViewBag.CatList = categoriesDAO.getList("Index");
+            //select * from Products voi Status !=0
+            ViewBag.ProList = productsDAO.getList("Index");
+            //select * from Suppliers voi Status !=0
+            ViewBag.SupList = suppliersDAO.getList("Index");
             //select * from Topics voi Status !=0
             ViewBag.TopList = topicsDAO.getList("Index");
             //select * from Posts voi Status !=0
-            ViewBag.PostList = productsDAO.getList("Index");
-            //select * from Suppliers voi Status !=0
-            ViewBag.SupList = suppliersDAO.getList("Index");
-            //Truyền menu dưới dạng Model
-            return View(menusDAO.getList("Index"));
+            ViewBag.PostList = postsDAO.getList("Index", "Page");
+            List<Menus> menu = menusDAO.getList("Index");//select * from Menus với Status !=0
+            return View("Index", menu); //Truyền menu dưới dạng model
+
         }
         [HttpPost]
         public ActionResult Index(FormCollection form)
@@ -66,7 +68,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                         menu.CreateBy = Convert.ToInt32(Session["UserID"].ToString());
                         menu.UpdateAt = DateTime.Now;
                         menu.UpdateBy = Convert.ToInt32(Session["UserID"].ToString());
-                        menu.Status = 2;    //Chưua xuất bản
+                        menu.Status = 2;    //Chưa xuất bản
                         //Thêm vào Database
                         menusDAO.Insert(menu);
                     }
@@ -75,77 +77,6 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 else
                 {
                     TempData["message"] = new XMessage("danger", "Chưa chọn danh mục loại sản phẩm");
-                }
-            }
-            //-------------------------Topic-----------------------//
-            //--Xử lý các nút ThemTopic bên Index
-            if (!string.IsNullOrEmpty(form["ThemTopic"]))//nút ThemCategory được nhấn
-            {
-                if (!string.IsNullOrEmpty(form["nameTopic"]))//check box được nhấn
-                {
-                    var listitem = form["nameTopic"];
-                    //Chuyển danh sách thành dạng mảng: vi du 1,2,3,...
-                    var listarr = listitem.Split(',');  //Ngắt theo dấu ","
-                    foreach (var row in listarr)    //row = id của các mẩu tin
-                    {
-                        int id = int.Parse(row);    //Ép kiểu int
-                        //Lấy một bản ghi
-                        Topics topics = topicsDAO.getRow(id);
-                        //Tạo ra Menu
-                        Menus menu = new Menus();
-                        menu.Name = topics.Name;
-                        menu.Link = topics.Slug;
-                        menu.TableID = topics.Id;
-                        menu.TypeMenu = "topic";
-                        menu.Position = form["Position"];
-                        menu.ParentID = 0;
-                        menu.Order = 0;
-                        menu.CreateBy = Convert.ToInt32(Session["UserId"].ToString());
-                        menu.CreateAt = DateTime.Now;
-                        menu.Status = 2;    //Chưa xuất bản
-                        menusDAO.Insert(menu);
-                    }
-                    TempData["message"] = new XMessage("success", "Thêm vào menu danh mục chủ đề bài viết thành công");
-                }
-                else
-                {
-                    TempData["message"] = new XMessage("danger", "Chưa chọn danh mục chủ đề bài viết");
-                }
-            }
-            //-------------------------Page-----------------------//
-            //--Xử lý các nút Thempage bên Index
-            if (!string.IsNullOrEmpty(form["ThemPage"]))
-            {
-                //Check box được nhấn từ phía Index
-                if (!string.IsNullOrEmpty(form["namePage"]))
-                {
-                    var listitem = form["namePage"];
-                    //Chuyển danh sách thành dạng mảng: 1,2,3,...
-                    var listarr = listitem.Split(',');  //Ngắt theo dấu ","
-                    foreach (var row in listarr)        //row = id của các mẩu tin
-                    {
-                        int id = int.Parse(row);    //Ép kiểu int
-                        //Lấy một bản ghi
-                        Posts post = postsDAO.getRow(id);
-                        //tao ra menu
-                        Menus menu = new Menus();
-                        menu.Name = post.Title;
-                        menu.Link = post.Slug;
-                        menu.TableID = post.Id;
-                        menu.TypeMenu = "page";
-                        menu.Position = form["Position"];
-                        menu.ParentID = 0;
-                        menu.Order = 0;
-                        menu.CreateBy = Convert.ToInt32(Session["UserId"].ToString());
-                        menu.CreateAt = DateTime.Now;
-                        menu.Status = 2;//chưa xuất bản
-                        menusDAO.Insert(menu);
-                    }
-                    TempData["message"] = new XMessage("success", "Thêm vào menu danh mục trang đơn thành công");
-                }
-                else//check box chưa được nhấn
-                {
-                    TempData["message"] = new XMessage("danger", "Chưa chọn danh mục trang đơn");
                 }
             }
             //-------------------------Supplier-----------------------//
@@ -221,6 +152,77 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 else
                 {
                     TempData["message"] = new XMessage("danger", "Chưa chọn sản phẩm");
+                }
+            }
+            //-------------------------Topic-----------------------//
+            //--Xử lý các nút ThemTopic bên Index
+            if (!string.IsNullOrEmpty(form["ThemTopic"]))//nút ThemCategory được nhấn
+            {
+                if (!string.IsNullOrEmpty(form["nameTopic"]))//check box được nhấn
+                {
+                    var listitem = form["nameTopic"];
+                    //Chuyển danh sách thành dạng mảng: vi du 1,2,3,...
+                    var listarr = listitem.Split(',');  //Ngắt theo dấu ","
+                    foreach (var row in listarr)    //row = id của các mẩu tin
+                    {
+                        int id = int.Parse(row);    //Ép kiểu int
+                        //Lấy một bản ghi
+                        Topics topics = topicsDAO.getRow(id);
+                        //Tạo ra Menu
+                        Menus menu = new Menus();
+                        menu.Name = topics.Name;
+                        menu.Link = topics.Slug;
+                        menu.TableID = topics.Id;
+                        menu.TypeMenu = "topic";
+                        menu.Position = form["Position"];
+                        menu.ParentID = 0;
+                        menu.Order = 0;
+                        menu.CreateBy = Convert.ToInt32(Session["UserId"].ToString());
+                        menu.CreateAt = DateTime.Now;
+                        menu.Status = 2;    //Chưa xuất bản
+                        menusDAO.Insert(menu);
+                    }
+                    TempData["message"] = new XMessage("success", "Thêm vào menu danh mục chủ đề bài viết thành công");
+                }
+                else
+                {
+                    TempData["message"] = new XMessage("danger", "Chưa chọn danh mục chủ đề bài viết");
+                }
+            }
+            //-------------------------Page-----------------------//
+            //--Xử lý các nút Thempage bên Index
+            if (!string.IsNullOrEmpty(form["ThemPage"]))    //nút ThemPage được nhấn
+            {
+                //Check box được nhấn từ phía Index
+                if (!string.IsNullOrEmpty(form["namePage"]))
+                {
+                    var listitem = form["namePage"];
+                    //Chuyển danh sách thành dạng mảng: 1,2,3,...
+                    var listarr = listitem.Split(',');  //Ngắt theo dấu ","
+                    foreach (var row in listarr)        //row = id của các mẩu tin
+                    {
+                        int id = int.Parse(row);    //Ép kiểu int
+                        //Lấy một bản ghi
+                        Posts post = postsDAO.getRow(id);
+                        //tao ra menu
+                        Menus menu = new Menus();
+                        menu.Name = post.Title;
+                        menu.Link = post.Slug;
+                        menu.TableID = post.Id;
+                        menu.TypeMenu = "page";
+                        menu.Position = form["Position"];
+                        menu.ParentID = 0;
+                        menu.Order = 0;
+                        menu.CreateBy = Convert.ToInt32(Session["UserId"].ToString());
+                        menu.CreateAt = DateTime.Now;
+                        menu.Status = 2;//chưa xuất bản
+                        menusDAO.Insert(menu);
+                    }
+                    TempData["message"] = new XMessage("success", "Thêm vào menu danh mục trang đơn thành công");
+                }
+                else//check box chưa được nhấn
+                {
+                    TempData["message"] = new XMessage("danger", "Chưa chọn danh mục trang đơn");
                 }
             }
             //-------------------------Custom-----------------------//
@@ -310,25 +312,6 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 TempData["message"] = new XMessage("danger", "Không tìm thấy Menu");
                 return RedirectToAction("Index");
             }
-            return View(menus);
-        }
-        /////////////////////////////////////////////////////////////////////////////////////
-        // GET: Admin/Menu/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-        // POST: Admin/Menu/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Menus menus)
-        {
-            if (ModelState.IsValid)
-            {
-                menusDAO.Insert(menus);
-                return RedirectToAction("Index");
-            }
-
             return View(menus);
         }
         /////////////////////////////////////////////////////////////////////////////////////

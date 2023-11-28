@@ -35,9 +35,9 @@ namespace MyClass.Model
         [Required(ErrorMessage = "Ngày tạo không để trống")]
         public int CreateBy { get; set; }
         [Display(Name = "Ngày cập nhật")]
-        public DateTime UpdateAt { get; set; }
+        public DateTime? UpdateAt { get; set; }
         [Display(Name = "Người cập nhật")]
-        public int UpdateBy { get; set; }
+        public int? UpdateBy { get; set; }
         [Display(Name = "Trạng thái")]
         public int Status { get; set; }
 

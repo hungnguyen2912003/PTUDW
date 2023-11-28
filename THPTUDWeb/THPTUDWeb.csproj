@@ -138,6 +138,7 @@
     <Compile Include="Areas\Admin\Controllers\SupplierController.cs" />
     <Compile Include="Areas\Admin\Controllers\TopicController.cs" />
     <Compile Include="Controllers\GiohangController.cs" />
+    <Compile Include="Controllers\KhachhangController.cs" />
     <Compile Include="Controllers\LienheController.cs" />
     <Compile Include="Controllers\ModuleController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
@@ -145,6 +146,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Library\CartItem.cs" />
+    <Compile Include="Library\XCart.cs" />
     <Compile Include="Library\XMessage.cs" />
     <Compile Include="Library\XString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2733,7 +2736,6 @@
     <Content Include="Areas\Admin\Views\Post\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Post\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Post\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Menu\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Menu\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Menu\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Menu\Edit.cshtml" />
@@ -2749,6 +2751,9 @@
     <Content Include="Areas\Admin\Views\Page\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Page\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Page\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Post\Trash.cshtml" />
+    <Content Include="Areas\Admin\Views\Page\Trash.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\Trash.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -2782,6 +2787,15 @@
     <Content Include="Views\Site\ProductCategory.cshtml" />
     <Content Include="Views\Module\CategoriesList.cshtml" />
     <Content Include="Views\Site\HomeProduct.cshtml" />
+    <Content Include="Views\Site\Product.cshtml" />
+    <Content Include="Views\Site\ProductDetail.cshtml" />
+    <Content Include="Views\Site\PostPage.cshtml" />
+    <Content Include="Views\Module\MenuFooter.cshtml" />
+    <Content Include="Views\Giohang\Index.cshtml" />
+    <Content Include="Views\Giohang\ThanhToan.cshtml" />
+    <Content Include="Views\Khachhang\DangNhap.cshtml" />
+    <Content Include="Views\Site\PostTopic.cshtml" />
+    <Content Include="Views\Khachhang\DangKy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2791,7 +2805,6 @@
     <Folder Include="Public\img\post\" />
     <Folder Include="Public\img\slider\" />
     <Folder Include="Public\img\supplier\" />
-    <Folder Include="Views\Giohang\" />
     <Folder Include="Views\Lienhe\" />
     <Folder Include="Views\Timkiem\" />
   </ItemGroup>

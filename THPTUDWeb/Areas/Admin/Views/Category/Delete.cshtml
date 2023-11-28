@@ -1,7 +1,7 @@
 ﻿@model MyClass.Model.Categories
 
 @{
-    ViewBag.Title = "Xác nhận xoá mẩu tin";
+    ViewBag.Title = "Xác nhận xoá loại sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -18,7 +18,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-6">
-                        <strong class="text-danger">XÁC NHẬN XOÁ SẢN PHẨM</strong>
+                        <strong class="text-danger">XÁC NHẬN XOÁ LOẠI SẢN PHẨM</strong>
                     </div>
                     <div class="col-md-6 text-right">
                         <a href="@Url.Action("Index", "Category")" class="btn-sm btn-info"> <i class="fa fa-long-arrow-alt-left"></i> Quay lại</a>
@@ -52,7 +52,7 @@
                     </tbody>
                 </table>
                 <div class="form-actions no-color">
-                    <button class="btn-sm btn-danger" type="submit" name="save"> Xoá <i class="fa fa-trash"></i> </button>
+                    <button class="btn-sm btn-danger" type="submit" name="save">[Delete] Xoá <i class="fa fa-trash"></i> </button>
                     <!-- /.card-body -->
                 </div>
             </div>

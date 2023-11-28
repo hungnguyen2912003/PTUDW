@@ -18,7 +18,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
     {
         PostsDAO postsDAO = new PostsDAO();
         LinksDAO linksDAO = new LinksDAO();
-        //Page khôgn có Chủ đề - Topic
+        //Page không có Chủ đề - Topic
         /////////////////////////////////////////////////////////////////////////////////////
         //Trả về dan hsasch các mẩu tin
         public ActionResult Index()
@@ -67,10 +67,9 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                     if (FileExtentions.Contains(img.FileName.Substring(img.FileName.LastIndexOf("."))))//lay phan mo rong cua tap tin
                     {
                         string slug = posts.Slug;
-                        string id = posts.Id.ToString();
                         //Chỉnh sửa sau khi phát hiện điều chưa dùng của Edit: Thêm ID
-                        //Tên file = Slug + ID + phần mở rộng của tập tin
-                        string imgName = slug + id + img.FileName.Substring(img.FileName.LastIndexOf("."));
+                        //Tên file = Slug + phần mở rộng của tập tin
+                        string imgName = slug + img.FileName.Substring(img.FileName.LastIndexOf("."));
                         posts.Image = imgName;
                         string PathDir = "~/Public/img/page/";
                         string PathFile = Path.Combine(Server.MapPath(PathDir), imgName);
@@ -141,7 +140,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
             TempData["message"] = new XMessage("success", "Cập nhật trạng thái thành công");
 
             //Khi cập nhật xong thì chuyển về Index
-            return RedirectToAction("Index", "Page");
+            return RedirectToAction("Index","Page");
         }
         /////////////////////////////////////////////////////////////////////////////////////
         // GET: Admin/Page/Edit/5
@@ -176,26 +175,26 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 //Chuyển đổi đưua vào trường Name để lạoi bỏ dấu, khoảng cách = dấu -
                 //Xử lý cho phần Upload hình ảnh
                 var img = Request.Files["img"]; //Lấy thông tin file
-                string PathDir = "~/Public/img/page/";
+
                 if (img.ContentLength != 0)
                 {
-                    //Update thì phải xoá ảnh cũ
-                    if (posts.Image != null)
-                    {
-                        string DelPath = Path.Combine(Server.MapPath(PathDir), posts.Image);
-                        System.IO.File.Delete(DelPath);
-                    }
                     string[] FileExtentions = new string[] { ".jpg", ".jpeg", ".png", ".gif" };
                     //Kiểm tra tập tin có hay không?
-                    if (FileExtentions.Contains(img.FileName.Substring(img.FileName.LastIndexOf("."))))//lay phan mo rong cua tap tin
+                    if (FileExtentions.Contains(img.FileName.Substring(img.FileName.LastIndexOf("."))))//Lấy phần mở rộng của tập tin
                     {
                         string slug = posts.Slug;
-                        string id = posts.Id.ToString();
                         //Chỉnh sửa sau khi phát hiện điều chưa dùng của Edit: Thêm ID
-                        //Tên file = Slug + ID + phần mở rộng của tập tin
-                        string imgName = slug + id + img.FileName.Substring(img.FileName.LastIndexOf("."));
+                        //Tên file = Slug + phần mở rộng của tập tin
+                        string imgName = slug + img.FileName.Substring(img.FileName.LastIndexOf("."));
                         posts.Image = imgName;
+                        string PathDir = "~/Public/img/page/";
                         string PathFile = Path.Combine(Server.MapPath(PathDir), imgName);
+                        //Update thì phải xoá ảnh cũ
+                        if (posts.Image != null)
+                        {
+                            string DelPath = Path.Combine(Server.MapPath(PathDir), posts.Image);
+                            System.IO.File.Delete(DelPath);
+                        }
                         //Upload hình
                         img.SaveAs(PathFile);
                     }

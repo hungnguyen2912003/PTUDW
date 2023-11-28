@@ -15,6 +15,7 @@ namespace MyClass.Model
         public string Name { get; set; }
 
         public string CatName { get; set; }
+        //Bổ sung thêm trường Slug của Categories: Detail Product
         public string CategorySlug { get; set; }
 
         public int SupplierId { get; set; }
