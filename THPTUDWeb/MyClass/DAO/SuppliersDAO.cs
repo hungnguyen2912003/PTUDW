@@ -58,6 +58,15 @@ namespace MyClass.DAO
             }
         }
         /////////////////////////////////////////////////////////////////////////////////////
+        //Hiển thị danh sách 1 mẩu tin (bản ghi) với kiểu string = slug
+        public Suppliers getRow(string slug)
+        {
+
+            return db.Suppliers
+                .Where(m => m.Slug == slug && m.Status == 1)
+                .FirstOrDefault();
+        }
+        /////////////////////////////////////////////////////////////////////////////////////
         ///Thêm mới một mẩu tin
         public int Insert(Suppliers row)
         {

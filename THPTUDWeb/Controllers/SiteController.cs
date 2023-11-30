@@ -38,6 +38,10 @@ namespace THPTUDWeb.Controllers
                             {
                                 return this.PostTopic(slug);
                             }
+                        case "supplier":
+                            {
+                                return this.ProductSupplier(slug);
+                            }
                         case "page":
                             {
                                 return this.PostPage(slug);
@@ -55,7 +59,7 @@ namespace THPTUDWeb.Controllers
                     //slug có trong bảng Post với PostType==post?
                     ProductsDAO productsDAO = new ProductsDAO();
                     PostsDAO postsDAO = new PostsDAO();
-
+                    SuppliersDAO suppliersDAO = new SuppliersDAO();
                     //Tìm slug có trong bảng Products
                     Products products = productsDAO.getRow(slug);
                     if (products != null)
@@ -72,20 +76,16 @@ namespace THPTUDWeb.Controllers
                         }
                         else
                         {
-                            return this.Error404(slug);
+                            Suppliers supplier = suppliersDAO.getRow(slug);
+                            if (supplier != null)
+                            {
+                                return this.ProductSupplier(slug);
+                            }
                         }
+                        return this.Error404(slug);
                     }
                 }
             }
-        }
-        /////////////////////////////////////////////////////////////////////////////
-        ///TRUY VẤN DỮ LIỆU TỪ MỤC CATEGORY ĐỂ ĐIỀN VÀO CHO PHẦN DANH MỤC
-        public ActionResult CategoriesList()
-        {
-            CategoriesDAO categoriesDAO = new CategoriesDAO();
-            List<Categories> list = categoriesDAO.getListByPareantId(0);
-            return View("CategoriesList", list);
-
         }
         /////////////////////////////////////////////////////////////////////////////
         //Trang chu
@@ -101,7 +101,7 @@ namespace THPTUDWeb.Controllers
         public ActionResult Product()
         {
             ProductsDAO productsDAO = new ProductsDAO();
-            List<ProductInfo> list = productsDAO.getListBylimit(10);
+            List<ProductInfo> list = productsDAO.getListBylimit(25);
             return View("Product", list);
         }
         public ActionResult Post()
@@ -168,7 +168,7 @@ namespace THPTUDWeb.Controllers
         //Product/Details
         public ActionResult ProductDetail(string slug)
         {
-            //Hiển thị nộki dung của sản phẩm
+            //Hiển thị nội dung của sản phẩm
             ProductsDAO productsDAO = new ProductsDAO();
             List<ProductInfo> list = productsDAO.GetProductDetailBySlug(slug);
             //Lấy CatID của sản phẩm hiện tại
@@ -220,7 +220,30 @@ namespace THPTUDWeb.Controllers
             ProductsDAO productsDAO = new ProductsDAO();
             List<ProductInfo> list = productsDAO.getListByListCatId(listcatid, 10);
             return View("HomeProduct", list);
+        }
 
+        /////////////////////////////////////////////////////////////////////////////
+        ///Hiển thị trang sản phẩm được cung cấp bởi từng nhà cung cấp 
+        public ActionResult ProductSupplier(string slug)
+        {
+            SuppliersDAO suppliersDAO = new SuppliersDAO();
+            Suppliers suppliers = suppliersDAO.getRow(slug);
+            ViewBag.Supplier = suppliers;
+            ProductsDAO productsDAO = new ProductsDAO();
+            List<Products> list = productsDAO.GetProductByID(suppliers.Id);
+            return View("ProductSupplier", list);
+        }
+        public ActionResult Gioithieu()
+        {
+            return View();
+        }
+        public ActionResult Lienhe()
+        {
+            return View();
+        }
+        public ActionResult Blog()
+        {
+            return View();
         }
     }
 }

@@ -45,13 +45,13 @@
                             @if (Model.TypeMenu.Equals("custom"))
                             {
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Name)
+                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-12" })
                                     @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                                 </div>
 
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Link)
+                                    @Html.LabelFor(model => model.Link, htmlAttributes: new { @class = "control-label col-md-12" })
                                     @Html.EditorFor(model => model.Link, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.Link, "", new { @class = "text-danger" })
                                 </div>
@@ -59,7 +59,7 @@
                             else
                             {
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Name)
+                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-12" })
                                     <div class="col-md-10">
                                         @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
                                         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
@@ -67,7 +67,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Link)
+                                    @Html.LabelFor(model => model.Link, htmlAttributes: new { @class = "control-label col-md-12" })
                                     <div class="col-md-10">
                                         @Html.EditorFor(model => model.Link, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
                                         @Html.ValidationMessageFor(model => model.Link, "", new { @class = "text-danger" })
@@ -80,7 +80,7 @@
                         @* Phần lựa chọn *@
                         <div class="col-md-3">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Position, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.Position, htmlAttributes: new { @class = "control-label col-md-12" })
                                 <div class="col-md-10">
                                     @Html.DropDownListFor(model => model.Position, new[] { new SelectListItem { Text = "Main Menu", Value = "MainMenu" }, new SelectListItem { Text = "Footer", Value = "Footer" } }, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.Position, "", new { @class = "text-danger" })
@@ -88,7 +88,7 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.ParentID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.ParentID, htmlAttributes: new { @class = "control-label col-md-12" })
                                 <div class="col-md-10">
                                     @Html.DropDownListFor(model => model.ParentID, (SelectList)@ViewBag.ParentList, "Cấp 0", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.ParentID, "", new { @class = "text-danger" })
@@ -96,7 +96,7 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Order, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.Order, htmlAttributes: new { @class = "control-label col-md-12" })
                                 <div class="col-md-10">
                                     @Html.DropDownListFor(model => model.Order, (SelectList)@ViewBag.OrderList, "Sắp xếp", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.Order, "", new { @class = "text-danger" })
@@ -104,7 +104,7 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-12" })
                                 <div class="col-md-10">
                                     @Html.DropDownListFor(model => model.Status, new[] { new SelectListItem { Text = "Không xuất bản", Value = "2" }, new SelectListItem { Text = "Xuất bản", Value = "1" } }, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })

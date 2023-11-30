@@ -62,5 +62,20 @@ namespace THPTUDWeb.Controllers
             List<Menus> list = menusDAO.getListByParentId(0, "Footer");
             return View("MenuFooter", list);
         }
+
+        // Action để hiển thị danh sách nhà cung cấp
+        public ActionResult SuppliersList()
+        {
+            SuppliersDAO suppliersDAO = new SuppliersDAO();
+            List<Suppliers> list = suppliersDAO.getList("Index");
+            return View("SuppliersList", list);
+        }
+        ///////////////////////////////////////////////////////////////////////////
+        public ActionResult PageList()
+        {
+            PostsDAO postsDAO = new PostsDAO();
+            List<Posts> list = postsDAO.getList("Index","page");
+            return View("PageList", list);
+        }
     }
 }

@@ -33,28 +33,25 @@
                                 <img class="img-fluid" src="~/Public/img/page/@Model.Image" alt="">
                             </div>
                         </div>
-
-                        <div class="col-lg-9 col-md-9 blog_details">
-                            @Model.Detail
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="blog_right_sidebar">
                         <aside class="single_sidebar_widget post_category_widget">
-                            <h4 class="widget_title">Chủ đề bài viết</h4>
-                            <ul class="list cat-list">
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Technology</p>
-                                        <p>37</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="br"></div>
+                            @Html.Action("PageList", "Module")
                         </aside>
                     </div>
                 </div>
+            </div>
+            <div>
+                @if (Model.Title == "Giới thiệu")
+                {
+                    @Html.Action("Gioithieu", "Site")
+                }
+                else if (Model.Title == "Liên hệ")
+                {
+                    @Html.Action("Lienhe", "Site")
+                }
             </div>
         </div>
     </section>

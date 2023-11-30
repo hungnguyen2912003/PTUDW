@@ -377,5 +377,9 @@ namespace MyClass.DAO
                 .ToList();
             return relatedProducts;
         }
+        public List<Products> GetProductByID(int id)
+        {
+            return db.Products.Where(p => p.SupplierID == id).ToList();
+        }
     }
 }

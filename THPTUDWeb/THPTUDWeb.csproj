@@ -177,6 +177,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Image\banner2.png" />
     <Content Include="Public\css\jquery.dataTables.min.css" />
     <Content Include="Public\css\main.css" />
     <Content Include="Public\css\style.css" />
@@ -236,6 +237,9 @@
     <Content Include="Public\img\blog\blog1.png" />
     <Content Include="Public\img\blog\blog2.png" />
     <Content Include="Public\img\blog\blog3.png" />
+    <Content Include="Public\img\blog\blogxl1.png" />
+    <Content Include="Public\img\blog\blogxl2.png" />
+    <Content Include="Public\img\blog\blogxl3.jpg" />
     <Content Include="Public\img\blog\c1.jpg" />
     <Content Include="Public\img\blog\c2.jpg" />
     <Content Include="Public\img\blog\c3.jpg" />
@@ -262,9 +266,12 @@
     <Content Include="Public\img\blog\popular-post\post1.jpg" />
     <Content Include="Public\img\blog\popular-post\post2.jpg" />
     <Content Include="Public\img\blog\popular-post\post3.jpg" />
+    <Content Include="Public\img\blog\popular-post\post3.png" />
     <Content Include="Public\img\blog\popular-post\post4.jpg" />
     <Content Include="Public\img\blog\post-img1.jpg" />
     <Content Include="Public\img\blog\post-img2.jpg" />
+    <Content Include="Public\img\blog\post1.png" />
+    <Content Include="Public\img\blog\post3.png" />
     <Content Include="Public\img\blog\prev.jpg" />
     <Content Include="Public\img\cart.jpg" />
     <Content Include="Public\img\cart\cart1.png" />
@@ -283,6 +290,11 @@
     <Content Include="Public\img\gallery\r5.jpg" />
     <Content Include="Public\img\gallery\r7.jpg" />
     <Content Include="Public\img\gallery\r8.jpg" />
+    <Content Include="Public\img\home\banner.png" />
+    <Content Include="Public\img\home\banner2.png" />
+    <Content Include="Public\img\home\banner3.png" />
+    <Content Include="Public\img\home\bannersale2.png" />
+    <Content Include="Public\img\home\bannersalse.png" />
     <Content Include="Public\img\home\hero-banner.png" />
     <Content Include="Public\img\home\hero-slide1.png" />
     <Content Include="Public\img\home\hero-slide2.png" />
@@ -304,6 +316,8 @@
     <Content Include="Public\img\instagram\ins-6.jpg" />
     <Content Include="Public\img\login.jpg" />
     <Content Include="Public\img\logo.png" />
+    <Content Include="Public\img\logo2.png" />
+    <Content Include="Public\img\notfind.png" />
     <Content Include="Public\img\product\card.jpg" />
     <Content Include="Public\img\product\product-sm-1.png" />
     <Content Include="Public\img\product\product-sm-2.png" />
@@ -2796,6 +2810,13 @@
     <Content Include="Views\Khachhang\DangNhap.cshtml" />
     <Content Include="Views\Site\PostTopic.cshtml" />
     <Content Include="Views\Khachhang\DangKy.cshtml" />
+    <Content Include="Views\Module\PageList.cshtml" />
+    <Content Include="Views\Site\Gioithieu.cshtml" />
+    <Content Include="Views\Site\Lienhe.cshtml" />
+    <Content Include="Views\Site\Blog.cshtml" />
+    <Content Include="Views\Timkiem\Index.cshtml" />
+    <Content Include="Views\Site\ProductSupplier.cshtml" />
+    <Content Include="Views\Module\SuppliersList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2806,7 +2827,6 @@
     <Folder Include="Public\img\slider\" />
     <Folder Include="Public\img\supplier\" />
     <Folder Include="Views\Lienhe\" />
-    <Folder Include="Views\Timkiem\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

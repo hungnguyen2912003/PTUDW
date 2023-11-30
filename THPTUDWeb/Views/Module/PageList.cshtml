@@ -1,0 +1,13 @@
+﻿@model IEnumerable<MyClass.Model.Posts>
+<div class="sidebar-categories">
+    <div class="head">Danh mục trang đơn</div>
+    <ul class="list-group list-group-flush">
+        @foreach (var item in Model)
+        {
+            <li class="list-group-item text-uppercase">
+                <a href="@item.Slug">@item.Title</a>
+            </li>
+        }
+    </ul>
+</div>
+

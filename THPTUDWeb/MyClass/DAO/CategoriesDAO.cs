@@ -26,15 +26,15 @@ namespace MyClass.DAO
                 case "Index":
                     {
                         list = db.Categories
-                        .Where(m => m.Status != 0)
-                        .ToList();
+                            .Where(m => m.Status != 0)
+                            .ToList();
                         break;
                     }
                 case "Trash":
                     {
                         list = db.Categories
-                        .Where(m => m.Status == 0)
-                        .ToList();
+                            .Where(m => m.Status == 0)
+                            .ToList();
                         break;
                     }
                 default:
@@ -45,6 +45,7 @@ namespace MyClass.DAO
             }
             return list;
         }
+        /////////////////////////////////////////////////////////////////////////////////////
         //Hiển thị danh sách 1 mẩu tin (bản ghi)
         public Categories getRow(int? id)
         {

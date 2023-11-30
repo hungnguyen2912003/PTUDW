@@ -27,13 +27,6 @@ namespace THPTUDWeb
                defaults: new { controller = "Site", action = "Post", id = UrlParameter.Optional }
            );
 
-            //Khai bao cho URL co dinh: lien-he
-            routes.MapRoute(
-               name: "Lienhe",
-               url: "lien-he",
-               defaults: new { controller = "Lienhe", action = "Index", id = UrlParameter.Optional }
-           );
-
             //Khai bao cho URL co dinh: gio-hang
             routes.MapRoute(
                name: "Giohang",
@@ -67,6 +60,13 @@ namespace THPTUDWeb
                name: "Timkiem",
                url: "tim-kiem",
                defaults: new { controller = "Timkiem", action = "Index", id = UrlParameter.Optional }
+           );
+
+            //Khai bao cho URL co dinh: tin-tuc
+            routes.MapRoute(
+               name: "Tintuc",
+               url: "tin-tuc",
+               defaults: new { controller = "Site", action = "Blog", id = UrlParameter.Optional }
            );
 
             //khai bao cho URL dong

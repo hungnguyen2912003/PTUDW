@@ -1,9 +1,42 @@
 ﻿@model IEnumerable<MyClass.Model.Menus>
 @using THPTUDWeb.Library
 
+<style>
+    #search-box {
+        background: #fff;
+        border-radius: 30px;
+    }
+
+    #search-box #search-text {
+        border: none;
+        outline: none;
+        background: none;
+        font-size: 18px;
+        width: 0;
+        padding: 0;
+        transition: all 0.25s ease-in-out;
+    }
+
+    #search-box:hover #search-text, #search-box #search-text:valid {
+        width: 300px;
+        padding: 10px 15px 10px 15px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
+
+    #search-box #search-btn {
+        background-color: none;
+        border: none;
+        padding: 15px;
+        cursor: pointer;
+        border-radius: 50%;
+        font-size: 18px;
+    }
+</style>
+
 <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container">
-        <a class="navbar-brand logo_h" href="index.html"><img src="~/Public/img/LOGO.png" alt=""></a>
+    <div class="container-fluid">
+        <a class="navbar-brand logo_h" href="https://localhost:44384/"><img src="~/Public/img/logo2.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
@@ -13,9 +46,26 @@
         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+                @*Trang chu*@
+                <li class="nav-item"><a class="nav-link" href="https://localhost:44384/">TRANG CHỦ</a></li>
+                @*Loai san pham*@
                 @foreach (var item in Model)
                 {
-                    @Html.Action("MainMenuSub", "Module", new { @id = @item.Id });
+                    if (item.TypeMenu == "topic")
+                    {
+                        @Html.Action("MainMenuSub", "Module", new { @id = @item.Id });
+                    }
+                }
+                @*Menu tuy chon*@
+                @foreach (var item in Model)
+                {
+                    if (item.TypeMenu == "custom")
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-uppercase active" href="@item.Link">@item.Name</a>
+                        </li>
+                    }
+
                 }
             </ul>
 
@@ -30,16 +80,12 @@
                         soluong = cartSession.Count;
                     }
                 }
-
-                <li class="nav-item"><button><i class="ti-search"></i></button></li>
-                @*<li class="nav-item "><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">@soluong</span></button> </li>
-                    <li class="nav-item"><a class="button button-header" href="~/gio-hang">Giỏ hàng</a></li>*@
-
-                @*<li class="nav-item">
-                        <a class="button button-header" href="~/gio-hang">
-                            <i class="ti-shopping-cart"></i><span class="nav-shop__circle">@soluong</span>
-                        </a>
-                    </li>*@
+                <li class="nav-item">
+                    <form action="@Url.Action("Index","Timkiem")" method="post" id="search-box">
+                        <input type="text" id="search-text" name="searchString" placeholder="Bạn cần tìm gì?" required>
+                        <button id="search-btn"><i class="ti-search"></i></button>
+                    </form>
+                </li>
 
                 <li class="nav-item">
                     <a class="button button-header" href="~/gio-hang">
@@ -47,8 +93,6 @@
                     </a>
                 </li>
                 <li class="nav-item"><button><i class="ti-user"></i></button></li>
-
-
             </ul>
         </div>
     </div>

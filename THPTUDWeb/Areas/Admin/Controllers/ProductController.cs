@@ -134,17 +134,8 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 products.UpdateBy = Convert.ToInt32(Session["UserID"]);
                 //Xử lý thông tin phần Hình ảnh
                 var img = Request.Files["img"];//Lấy thông tin file
-                //Upload hình
-                string PathDir = "~/Public/img/product/";
                 if (img.ContentLength != 0)
                 {
-                    //Update thì phải xoá ảnh cũ
-                    if (products.Image != null)
-                    {
-                        string DelPath = Path.Combine(Server.MapPath(PathDir), products.Image);
-                        System.IO.File.Delete(DelPath);
-                    }
-
                     string[] FileExtentions = new string[] { ".jpg", ".jpeg", ".png", ".gif" };
                     //kiem tra tap tin co hay khong
                     if (FileExtentions.Contains(img.FileName.Substring(img.FileName.LastIndexOf("."))))//Lấy phần mở rộng tập tin
@@ -153,7 +144,15 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                         //Tên file = Slug + Phần mở rộng của tập tin
                         string imgName = slug + img.FileName.Substring(img.FileName.LastIndexOf("."));
                         products.Image = imgName;
+                        //Upload hình
+                        string PathDir = "~/Public/img/product/";
                         string PathFile = Path.Combine(Server.MapPath(PathDir), imgName);
+                        //Update thì phải xoá ảnh cũ
+                        if (products.Image != null)
+                        {
+                            string DelPath = Path.Combine(Server.MapPath(PathDir), products.Image);
+                            System.IO.File.Delete(DelPath);
+                        }
                         img.SaveAs(PathFile);
                     }
                 }//Kết thúc upload hình ảnh
