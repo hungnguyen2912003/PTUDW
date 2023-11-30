@@ -27,7 +27,7 @@ namespace THPTUDWeb.Controllers
         public ActionResult AddCart(int productid)
         {
             Products products = productsDAO.getRow(productid);
-            CartItem cartitem = new CartItem(products.Id, products.Name, products.Image, products.Price, 1);
+            CartItem cartitem = new CartItem(products.Id, products.Name, products.Image, products.Price, products.SalePrice, 1);
             //Thêm vào giỏ hàng với danh sách list phần tử = Session = MyCart
             if (Session["MyCart"].Equals(""))   //session chưa có giỏ hàng
             {

@@ -45,7 +45,7 @@
                                         <td>@item.Name </td>
                                         <td><img src="~/Public/img/product/@item.Img" alt="Img" class="img-fluid" /></td>
                                         <td class="card-product__price"><input name="amount" value="@item.Ammount" type="number" min="1" /></td>
-                                        <td class="card-product__price">@string.Format("{0:0,0}", @item.Price)<sup>đ</sup></td>
+                                        <td class="card-product__price">@string.Format("{0:0,0}", @item.SalePrice)<sup>đ</sup></td>
                                         <td class="card-product__price">@string.Format("{0:0,0}", @item.Total)<sup>đ</sup></td>
                                         <td><a href="@Url.Action("CartDel", "Giohang", new { productid = @item.ProductId })" class="btn-sm btn-danger"> <i class="fa fa-trash"></i></a></td>
                                     </tr>

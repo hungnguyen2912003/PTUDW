@@ -33,7 +33,7 @@ namespace THPTUDWeb.Library
                         if (item.ProductId == productid)
                         {
                             list[vt].Ammount += 1;
-                            list[vt].Total = list[vt].Ammount * list[vt].Price;
+                            list[vt].Total = list[vt].Ammount * list[vt].SalePrice;
                         }
                         vt++;
                     }
@@ -59,7 +59,7 @@ namespace THPTUDWeb.Library
             foreach (CartItem cartitem in list)
             {
                 list[vt].Ammount = int.Parse(arramout[vt]);
-                list[vt].Total = list[vt].Ammount * list[vt].Price;
+                list[vt].Total = list[vt].Ammount * list[vt].SalePrice;
                 vt++;
             }
             //Cập nhật lại giỏ hàng

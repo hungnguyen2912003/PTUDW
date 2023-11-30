@@ -11,20 +11,22 @@ namespace THPTUDWeb.Library
         public string Name { get; set; }
         public string Img { get; set; }
         public decimal Price { get; set; }
+        public decimal SalePrice { get; set; }
         public int Ammount { get; set; }
         public decimal Total { get; set; }
         public CartItem()
         {
 
         }
-        public CartItem(int proid, string name, string img, decimal price, int qty)
+        public CartItem(int proid, string name, string img, decimal price, decimal saleprice, int qty)
         {
             this.ProductId = proid;
             this.Name = name;
             this.Img = img;
             this.Price = price;
+            this.SalePrice = saleprice;
             this.Ammount = qty;
-            this.Total = price * qty;
+            this.Total = saleprice * qty;
         }
     }
 }
