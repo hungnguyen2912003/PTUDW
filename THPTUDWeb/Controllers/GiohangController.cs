@@ -103,7 +103,7 @@ namespace THPTUDWeb.Controllers
         public ActionResult ThanhToan()
         {
             //Kiểm tra thông tin đăng nhập trang người dùng = Khách hàng
-            if (Session["UserCustomer"].Equals(""))
+            if (Session["UserCustomer"] == null)
             {
                 return Redirect("~/dang-nhap"); //Chuyển hướng đến URL
             }

@@ -9,5 +9,6 @@ namespace THPTUDWeb
 		{
 			filters.Add(new HandleErrorAttribute());
 		}
+
 	}
 }

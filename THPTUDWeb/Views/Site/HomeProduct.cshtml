@@ -4,6 +4,17 @@
     var item = ViewBag.Categories;
 }
 
+<style>
+    .custom-button {
+        background-color: #8894FF;
+        color: #ffffff;
+        padding: 0.65em 0.8em 0.65em 0.8em;
+    }
+    .custom-button:hover {
+        background-color: #384AEB;
+    }
+</style>
+
 @if (Model.Count() != 0)
 {
 
@@ -22,11 +33,9 @@
                         <img class="card-img" src="Public/img/product/@product.Image" alt="">
                         <ul class="card-product__imgOverlay">
                             <li><button><i class="ti-search"></i></button></li>
-                            <li>
-                                <a href="@Url.Action("AddCart","Giohang", new { productid   = product.Id })">
-                                    <span class="custom-button"><i class="ti-shopping-cart"></i></span>
-                                </a>
-                            </li>
+                            <li><a href="@Url.Action("AddCart","Giohang", new { productid   = product.Id })">
+                                <span class="custom-button"><i class="ti-shopping-cart"></i></span>
+                                </a></li>
                             <li><button><i class="ti-heart"></i></button></li>
                         </ul>
                     </div>

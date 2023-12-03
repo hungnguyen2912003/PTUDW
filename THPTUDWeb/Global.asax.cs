@@ -20,12 +20,9 @@ namespace THPTUDWeb
 		//Tạo mới Session
 		protected void Session_Start()
 		{
-            //Lưu mã người đăng nhập quản lý
-            Session["UserID"] = "1";
-            Session["MyCart"] = "";//Khởi tạo giá trị = NULL
-			//Lưu thông tin đăng nhập của người dùng
-            Session["UserCustomer"] = "";
-
+			//Lưu mã người đăng nhập quản lý
+			Session["UserID"] = "1";
+			Session["MyCart"] = "";//Khởi tạo giá trị = NULL
         }
 
     }

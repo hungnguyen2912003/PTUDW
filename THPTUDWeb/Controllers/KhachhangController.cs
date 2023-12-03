@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using THPTUDWeb.Library;
 
 namespace THPTUDWeb.Controllers
@@ -25,19 +26,22 @@ namespace THPTUDWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult DangNhap(FormCollection field)
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult DangNhap(Users users)
         {
-            String username = field["username "];
-            String password = XString.ToMD5(field["password "]);
             //So sánh thông tin người dùng
-            Users row_user = usersDAO.getRow(username, "customer");
-            String strErr = "";
+            Users row_user = usersDAO.getRow(users.Username, users.Password, "customer");
             if (row_user == null)
             {
-                strErr = "Tên đăng nhập không tồn tại";
+                TempData["message"] = new XMessage("danger", "Đăng nhập thất bại do tên tài khoản hoặc mật khẩu không đúng!");
+                return RedirectToAction("DangNhap");
             }
-            ViewBag.Error = "<span class='text-danger'>" + strErr + "</div";
-            return View("DangNhap");
+            else
+            {
+                Session["UserCustomer"] = row_user.Username;
+                return RedirectToAction("Index", "Site");
+            }
         }
         //////////////////////////////////////////////////////////////////////////
         // GET: Khachhang: Đăng ký
@@ -45,6 +49,38 @@ namespace THPTUDWeb.Controllers
         {
             return View();
         }
-
+        [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult DangKy(Users users)
+        {
+            if(ModelState.IsValid)
+            {
+                var valid_user = usersDAO.getList().Select(m => m.Username);
+                if (valid_user.Contains(users.Username) && users.Role == "customer")
+                {
+                    TempData["message"] = new XMessage("danger", "Đăng ký thất bại do tên đăng nhập đã tồn tại");
+                    return RedirectToAction("DangKy");
+                }
+                users.Role = "customer";
+                users.CreateAt = DateTime.Now;
+                users.CreateBy = Convert.ToInt32(Session["UserID"]);
+                users.UpdateAt = DateTime.Now;
+                users.UpdateBy = Convert.ToInt32(Session["UserID"]);
+                users.Status = 1;
+                usersDAO.Insert(users);
+                TempData["message"] = new XMessage("success", "Đăng ký thành công");
+                return RedirectToAction("DangKy");
+            }
+            return View(users);
+        }
+        //////////////////////////////////////////////////////////////////////////
+        ///Đăng xuất
+        public ActionResult Dangxuat()
+        {
+            Session.Remove("UserCustomer");
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Site");
+        }
     }
 }

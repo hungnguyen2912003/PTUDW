@@ -32,9 +32,9 @@ namespace THPTUDWeb.Library
         }
 
         //Mã hoá Password
-        public static string ToMD5(this string str)
+        public static string ToMD5(string str)
         {
-            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+            MD5 md5 = new MD5CryptoServiceProvider();
             byte[] bHash = md5.ComputeHash(Encoding.UTF8.GetBytes(str));
             StringBuilder sbHash = new StringBuilder();
             foreach (byte b in bHash)
@@ -44,7 +44,7 @@ namespace THPTUDWeb.Library
             return sbHash.ToString();
         }
 
-        public static string ToShortString(this string str, int? length)
+        public static string ToShortString(string str, int? length)
         {
             int lengt = (length ?? 20);
             if (str.Length > lengt)

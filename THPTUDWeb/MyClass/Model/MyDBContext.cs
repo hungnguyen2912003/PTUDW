@@ -15,7 +15,6 @@ namespace MyClass.Model
 		}
 		//ket noi cac bang
 		public DbSet<Categories> Categories { get; set; }
-		public DbSet<Contacts> Contacts { get; set; }
 		public DbSet<Links> Links { get; set; }
 		public DbSet<Menus> Menus { get; set; }
 		public DbSet<OrderDetails> OrderDetails { get; set; }

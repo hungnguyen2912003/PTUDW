@@ -29,14 +29,19 @@ namespace MyClass.Model
 		[Display(Name = "Từ khoá")]
 		public string MetaKey { get; set; }
 		[Display(Name = "Người tạo")]
-		public int CreateBy { get; set; }
+        [Required(ErrorMessage = "Người tạo không được để trống")]
+        public int CreateBy { get; set; }
 		[Display(Name = "Ngày tạo")]
-		public DateTime CreateAt { get; set; }
+        [Required(ErrorMessage = "Ngày tạo không được để trống")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime CreateAt { get; set; }
 		[Display(Name = "Người cập nhật")]
 		public int? UpdateBy { get; set; }
 		[Display(Name = "Ngày cập nhật")]
-		public DateTime? UpdateAt { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime? UpdateAt { get; set; }
 		[Display(Name = "Trạng thái")]
-		public int Status { get; set; }
+        [Required(ErrorMessage = "Trạng thái không được để trống")]
+        public int Status { get; set; }
 	}
 }

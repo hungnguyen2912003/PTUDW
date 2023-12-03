@@ -32,13 +32,16 @@ namespace MyClass.Model
         [Display(Name = "Người tạo")]
         public int CreateBy { get; set; }
         [Required(ErrorMessage = "Ngày tạo không được để trống!")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [Display(Name = "Ngày tạo")]
         public DateTime CreateAt { get; set; }
         [Display(Name = "Người cập nhật")]
         public int? UpdateBy { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [Display(Name = "Ngày cập nhật")]
         public DateTime? UpdateAt { get; set; }
         [Display(Name = "Trạng thái")]
+        [Required(ErrorMessage = "Trạng thái không được để trống")]
         public int Status { get; set; }
 	}
 }

@@ -4,5 +4,125 @@
     Layout = "~/Views/Shared/_LayoutSite.cshtml";
 }
 
-<h2>ThanhToan</h2>
-
+<!-- ================ start banner area ================= -->
+<section class="blog-banner-area" id="category">
+    <div class="container h-100">
+        <div class="blog-banner">
+            <div class="text-center">
+                <h1>Thanh toán đơn hàng</h1>
+                <nav aria-label="breadcrumb" class="banner-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ================ end banner area ================= -->
+<!--================Checkout Area =================-->
+<section class="checkout_area section-margin--small">
+    <div class="container">
+        <div class="cupon_area">
+            <div class="check_title">
+                <h2>Bạn đã có mã giảm giá?</h2>
+            </div>
+            <input type="text" placeholder="Nhập mã giảm giá của bạn vào đây">
+            <a class="button button-coupon" href="#">Áp dụng mã giảm giá</a>
+        </div>
+        <div class="billing_details">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h3>Chi tiết khách hàng</h3>
+                    <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                        <div class="col-md-6 form-group p_star">
+                            <input type="text" class="form-control" id="first" name="name" placeholder="Nhập họ của bạn">
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <input type="text" class="form-control" id="last" name="name" placeholder="Nhập tên của bạn">
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="Nhập số điện thoại">
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <input type="text" class="form-control" id="email" name="email" placeholder="Nhập email của bạn">
+                        </div>
+                        <div class="col-md-12 form-group p_star">
+                            <select class="country_select">
+                                <option value="1">Nha Trang</option>
+                                <option value="2">TP Hồ Chí Minh</option>
+                                <option value="4">Hà Nội</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12 form-group p_star">
+                            <input type="text" class="form-control" id="add1" name="add1" placeholder="Địa chỉ 1">
+                        </div>
+                        <div class="col-md-12 form-group p_star">
+                            <input type="text" class="form-control" id="add2" name="add2" placeholder="Địa chỉ 2">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP">
+                        </div>
+                        <div class="col-md-12 form-group mb-0">
+                            <div class="creat_account">
+                                <h3>Chi tiết về vận chuyển</h3>
+                                <input type="checkbox" id="f-option3" name="selector">
+                                <label for="f-option3">Vận chuyển ở địa chỉ khác?</label>
+                            </div>
+                            <textarea class="form-control" name="message" id="message" rows="1" placeholder="Để lại lời nhắn cho Shipper"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-4">
+                    <div class="order_box">
+                        <h2>Your Order</h2>
+                        <ul class="list">
+                            <li><a href="#"><h4>Sản phẩm <span>Tổng</span></h4></a></li>
+                            <li><a href="#">Fresh Blackberry <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
+                            <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
+                            <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
+                        </ul>
+                        <ul class="list list_2">
+                            <li><a href="#">Tạm tính <span>$2160.00</span></a></li>
+                            <li><a href="#">Phí vận chuyển <span>Flat rate: $50.00</span></a></li>
+                            <li><a href="#">Tổng cộng <span>$2210.00</span></a></li>
+                        </ul>
+                        <div class="payment_item">
+                            <div class="radion_btn">
+                                <input type="radio" id="f-option5" name="selector">
+                                <label for="f-option5">Check payments</label>
+                                <div class="check"></div>
+                            </div>
+                            <p>
+                                Please send a check to Store Name, Store Street, Store Town, Store State / County,
+                                Store Postcode.
+                            </p>
+                        </div>
+                        <div class="payment_item active">
+                            <div class="radion_btn">
+                                <input type="radio" id="f-option6" name="selector">
+                                <label for="f-option6">Paypal </label>
+                                <img src="img/product/card.jpg" alt="">
+                                <div class="check"></div>
+                            </div>
+                            <p>
+                                Pay via PayPal; you can pay with your credit card if you don’t have a PayPal
+                                account.
+                            </p>
+                        </div>
+                        <div class="creat_account">
+                            <input type="checkbox" id="f-option4" name="selector">
+                            <label for="f-option4">I’ve read and accept the </label>
+                            <a href="#">terms & conditions*</a>
+                        </div>
+                        <div class="text-center">
+                            <a class="button button-paypal" href="#">Proceed to Paypal</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Checkout Area =================-->

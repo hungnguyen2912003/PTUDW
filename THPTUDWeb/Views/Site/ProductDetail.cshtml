@@ -46,14 +46,9 @@
                                 Đây là sản phẩm do @product.SupplierName cung cấp. Các sản phẩm đều được bảo hành 1 năm bởi @product.SupplierName.
                             </p>
                             <div class="product_count">
-                                <label for="qty">Quantity:</label>
-                                <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                        class="increase items-count" type="button">
-                                </button>
+                                <label for="qty">Số lượng:</label>
                                 <input type="text" name="qty" id="sst" size="2" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-                                <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button">
-                                </button>
-                                <a class="button primary-btn" href="#">Add to Cart</a>
+                                <a class="button primary-btn" href="@Url.Action("AddCart", "Giohang", new { productid = product.Id })">Thêm vào giỏ hàng</a>
                             </div>
                         </div>
                     </div>

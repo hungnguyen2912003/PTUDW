@@ -47,6 +47,7 @@ namespace MyClass.Model
         public int CreateBy { get; set; }
 
         [Required(ErrorMessage = "Ngày tạo không được để trống")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [Display(Name = "Ngày tạo")]
         public DateTime CreateAt { get; set; }
 
@@ -54,6 +55,7 @@ namespace MyClass.Model
         public int? UpdateBy { get; set; }
 
         [Display(Name = "Ngày cập nhật")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? UpdateAt { get; set; }
 
         [Required(ErrorMessage = "Trạng thái không được để trống")]

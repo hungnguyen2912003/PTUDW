@@ -68,6 +68,12 @@ namespace THPTUDWeb
                url: "tin-tuc",
                defaults: new { controller = "Site", action = "Blog", id = UrlParameter.Optional }
            );
+            //Khai bao cho URL co dinh: dang-xuat
+            routes.MapRoute(
+               name: "Dangxuat",
+               url: "dang-xuat",
+               defaults: new { controller = "Khachhang", action = "Dangxuat", id = UrlParameter.Optional }
+           );
 
             //khai bao cho URL dong
             routes.MapRoute(

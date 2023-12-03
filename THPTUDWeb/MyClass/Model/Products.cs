@@ -30,9 +30,11 @@ namespace MyClass.Model
         [Display(Name = "Hình ảnh")]
         public string Image { get; set; }
         [Required(ErrorMessage = "Giá gốc sản phẩm không được để trống!")]
+        [DisplayFormat(DataFormatString = "{0:C0}")]
         [Display(Name = "Giá gốc")]
         public decimal Price { get; set; }
         [Required(ErrorMessage = "Giá bán sản phẩm không được để trống!")]
+        [DisplayFormat(DataFormatString = "{0:C0}")]
         [Display(Name = "Giá giảm")]
         public decimal SalePrice { get; set; }
         [Required(ErrorMessage = "Số lượng sản phẩm không được để trống!")]
@@ -48,9 +50,11 @@ namespace MyClass.Model
         [Display(Name = "Người tạo")]
         public int CreateBy { get; set; }
         [Required(ErrorMessage = "Ngày tạo không được để trống!")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [Display(Name = "Ngày tạo")]
         public DateTime CreateAt { get; set; }
         [Display(Name = "Cập nhật bởi")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public int? UpdateBy { get; set; }
         [Display(Name = "Ngày cập nhật")]
         public DateTime? UpdateAt { get; set; }

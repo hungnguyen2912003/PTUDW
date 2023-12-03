@@ -11,42 +11,44 @@ namespace MyClass.Model
 	[Table("Users")]
 	public class Users
 	{
-		[Key]
-		public int Id { get; set; }
-		[Required]
-        [Display(Name = "Tên đăng nhập")]
-        public string Username {  get; set; }
-		[Required]
+        [Key]
+        public int Id { get; set; }
+
+        [Display(Name = "Tên người dùng")]
+        [Required(ErrorMessage = "Tên người dùng không được để trống")]
+        public string Username { get; set; }
+
+        [RegularExpression("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$", ErrorMessage = "Mật khẩu phải bao gồm chữ, số, ít nhất 1 ký tự viết hoa và 1 ký tự đặc biệt")]
         [Display(Name = "Mật khẩu")]
+        [Required(ErrorMessage = "Mật khẩu không được để trống")]
         public string Password { get; set; }
-		[Required]
-        [Display(Name = "Họ tên người dùng")]
-        public string Fullname {  get; set; }
-		[Required]
-        [Display(Name = "Thư điện tử")]
+
+        [Compare("Password", ErrorMessage = "Xác nhận mật khẩu không đúng")]
+        [Display(Name = "Xác nhận mật khẩu")]
+        [Required(ErrorMessage = "Xác nhận mật khẩu không được để trống")]
+        public string ConfirmPassword { get; set; }
+
+        [RegularExpression("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", ErrorMessage = "Email không hợp lệ")]
+        [Display(Name = "Email")]
+        [Required(ErrorMessage = "Email không được để trống")]
         public string Email { get; set; }
-		[Required]
-        [Display(Name = "Số điện thoại")]
-        public string Phone { get; set; }
-        [Display(Name = "Hình ảnh")]
-        public string Image {  get; set; }
-		[Required]
-        [Display(Name = "Giới tính")]
-        public string Gender {  get; set; }
-		[Required]
-        [Display(Name = "Quyền truy cập")]
-        public string Role {  get; set; }
-        [Display(Name = "Địa chỉ")]
-        public string Address {  get; set; }
+
+        [Display(Name = "Vai trò")]
+        public string Role { get; set; }
+
         [Display(Name = "Ngày tạo")]
-        public DateTime? CreateAt {  get; set; }
+        public DateTime? CreateAt { get; set; }
+
         [Display(Name = "Người tạo")]
         public int? CreateBy { get; set; }
+
         [Display(Name = "Ngày cập nhật")]
         public DateTime? UpdateAt { get; set; }
+
         [Display(Name = "Người cập nhật")]
         public int? UpdateBy { get; set; }
+
         [Display(Name = "Trạng thái")]
         public int? Status { get; set; }
-	}
+    }
 }

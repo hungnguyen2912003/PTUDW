@@ -56,10 +56,10 @@ namespace MyClass.DAO
 
         /////////////////////////////////////////////////////////////////////////////////////
         ///Kiểm tra thông tin đăng nhập
-        public Users getRow(string username, string role)
+        public Users getRow(string username, string password, string role)
         {
             return db.Users
-               .Where(m => m.Status == 1 && m.Role == "role" && (m.Username == username || m.Email == username))
+               .Where(m => m.Status == 1 && m.Role == role && (m.Username == username && m.Password == password))
                .FirstOrDefault();
         }
         /////////////////////////////////////////////////////////////////////////////////////

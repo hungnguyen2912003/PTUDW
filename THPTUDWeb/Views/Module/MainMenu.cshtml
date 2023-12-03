@@ -88,11 +88,21 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="button button-header" href="~/gio-hang">
+                    <a href="~/gio-hang">
                         <i class="ti-shopping-cart"></i><span class="nav-shop__circle">@soluong</span>
                     </a>
                 </li>
-                <li class="nav-item"><button><i class="ti-user"></i></button></li>
+                <li class="nav-item">
+                    @if (Session["UserCustomer"] == null)
+                    {
+                        <a href="~/dang-nhap"><i class="ti-user"></i>&nbsp;&nbsp;<span>Đăng nhập</span></a>
+                    }
+                    else
+                    {
+                        <span>Xin chào, @Session["UserCustomer"]</span><br />
+                        <a href="/dang-xuat">Đăng xuất</a>
+                    }
+                </li>
             </ul>
         </div>
     </div>
