@@ -55,6 +55,7 @@ namespace THPTUDWeb.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 //Xử lý tự động cho các trường sau:
                 //-----Create At
                 users.CreateAt = DateTime.Now;
@@ -64,10 +65,18 @@ namespace THPTUDWeb.Areas.Admin.Controllers
                 users.UpdateAt = DateTime.Now;
                 //-----UpdateBy
                 users.UpdateBy = Convert.ToInt32(Session["UserID"]);
-                usersDAO.Insert(users);
-                //Hiển thị thông báo thành công
-                TempData["message"] = new XMessage("success", "Thêm tài khoản người dùng thành công");
-                return RedirectToAction("Index");
+                if (usersDAO.UsernameValid(users.Username))
+                {
+                    ModelState.AddModelError("Username", "Tên người dùng đã tồn tại. Vui lòng chọn một tên khác.");
+                    return View(users);
+                }
+                else
+                {
+                    usersDAO.Insert(users);
+                    //Hiển thị thông báo thành công
+                    TempData["message"] = new XMessage("success", "Thêm tài khoản người dùng thành công");
+                    return RedirectToAction("Index");
+                }
             }
             return View(users);
         }

@@ -85,6 +85,11 @@ namespace MyClass.DAO
             db.Users.Remove(row);
             return db.SaveChanges();
         }
-
+        /////////////////////////////////////////////////////////////////////////////////////
+        ///Kiểm tra trùng tài khoản
+        public bool UsernameValid(string username)
+        {
+            return db.Users.Any(m => m.Username == username);
+        }
     }
 }
