@@ -56,21 +56,23 @@ namespace THPTUDWeb.Controllers
         {
             if(ModelState.IsValid)
             {
-                var valid_user = usersDAO.getList().Select(m => m.Username);
-                if (valid_user.Contains(users.Username) && users.Role == "customer")
-                {
-                    TempData["message"] = new XMessage("danger", "Đăng ký thất bại do tên đăng nhập đã tồn tại");
-                    return RedirectToAction("DangKy");
-                }
                 users.Role = "customer";
                 users.CreateAt = DateTime.Now;
                 users.CreateBy = Convert.ToInt32(Session["UserID"]);
                 users.UpdateAt = DateTime.Now;
                 users.UpdateBy = Convert.ToInt32(Session["UserID"]);
                 users.Status = 1;
-                usersDAO.Insert(users);
-                TempData["message"] = new XMessage("success", "Đăng ký thành công");
-                return RedirectToAction("DangKy");
+                if (usersDAO.UsernameValid(users.Username) && users.Role == "customer")
+                {
+                    ModelState.AddModelError("Username", "Tên người dùng đã tồn tại. Vui lòng chọn một tên khác.");
+                    return View(users);
+                }
+                else
+                {
+                    usersDAO.Insert(users);
+                    TempData["message"] = new XMessage("success", "Đăng ký thành công");
+                    return RedirectToAction("DangKy");
+                }
             }
             return View(users);
         }
