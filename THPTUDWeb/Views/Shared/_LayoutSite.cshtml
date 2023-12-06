@@ -1,30 +1,30 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<title>@Page.Title</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Aroma Shop - Home</title>
-	<link rel="icon" href="img/Fevicon.png" type="image/png">
-	<link rel="stylesheet" href="Public/vendors/bootstrap/bootstrap.min.css">
-	<link rel="stylesheet" href="Public/vendors/fontawesome/css/all.min.css">
-	<link rel="stylesheet" href="Public/vendors/themify-icons/themify-icons.css">
-	<link rel="stylesheet" href="Public/vendors/nice-select/nice-select.css">
-	<link rel="stylesheet" href="Public/vendors/owl-carousel/owl.theme.default.min.css">
-	<link rel="stylesheet" href="Public/vendors/owl-carousel/owl.carousel.min.css">
-	<link rel="stylesheet" href="Public/css/style.css">
+    <title>@Page.Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aroma Shop - Home</title>
+    <link rel="icon" href="img/Fevicon.png" type="image/png">
+    <link rel="stylesheet" href="Public/vendors/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="Public/vendors/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="Public/vendors/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="Public/vendors/nice-select/nice-select.css">
+    <link rel="stylesheet" href="Public/vendors/owl-carousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="Public/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="Public/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="Public/vendors/jquery/jquery-3.2.1.min.js"></script>
+    <script src="Public/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="Public/vendors/skrollr.min.js"></script>
+    <script src="Public/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="Public/vendors/nice-select/jquery.nice-select.min.js"></script>
+    <script src="Public/vendors/jquery.ajaxchimp.min.js"></script>
+    <script src="Public/vendors/mail-script.js"></script>
+    <script src="Public/js/main.js"></script>
 
-	<script src="Public/vendors/jquery/jquery-3.2.1.min.js"></script>
-	<script src="Public/vendors/bootstrap/bootstrap.bundle.min.js"></script>
-	<script src="Public/vendors/skrollr.min.js"></script>
-	<script src="Public/vendors/owl-carousel/owl.carousel.min.js"></script>
-	<script src="Public/vendors/nice-select/jquery.nice-select.min.js"></script>
-	<script src="Public/vendors/jquery.ajaxchimp.min.js"></script>
-	<script src="Public/vendors/mail-script.js"></script>
-	<script src="Public/js/main.js"></script>
-
-	@RenderSection("header", required: false)
+    @RenderSection("header", required: false)
 </head>
 <body>
     <!--================ Start Header Menu Area =================-->
@@ -47,10 +47,16 @@
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="single-footer-widget tp_widgets">
                             <h4 class="footer_title large_title">Technology Store</h4>
-                                <p>Đây là trang web Demo cho bài thi Phát triển Ứng Dụng Web của Nguyễn Khắc Duy Hưng</p>
+                            <p>Đây là trang web Demo cho bài thi Phát triển Ứng Dụng Web của Nguyễn Khắc Duy Hưng</p>
+                            <div class="social mb-5" style="font-size: 25px; color: #A7B1BE">
+                                <i class="fa-brands fa-dribbble pr-4"></i>
+                                <i class="fa-brands fa-github pr-4"></i>
+                                <i class="fa-brands fa-instagram pr-4"></i>
+                                <i class="fa-brands fa-facebook"></i>
+                            </div>
                         </div>
                     </div>
-                    @Html.Action("MenuFooter","Module")
+                    @Html.Action("MenuFooter", "Module")
                     <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
                         <div class="single-footer-widget tp_widgets">
                             <h4 class="footer_title">Liên hệ với chúng tôi</h4>
@@ -81,20 +87,19 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-2">
+                        <h5 class="mb-4" style="color: white;">Chính sách</h5>
+                        <h6 style="color: white; margin-bottom: 20px">Chính sách thanh toán</h6>
+                        <h6 style="color: white; margin-bottom: 20px ">Chính sách đổi trả hàng</h6>
+                        <h6 style="color: white; margin-bottom: 20px ">Chính sách khách vip</h6>
+                        <h6 style="color: white; margin-bottom: 20px ">Chính sách bảo mật thông tin cá nhân</h6>
+                        <h6 style="color: white; margin-bottom: 20px ">Chính sách vận chuyển</h6>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row d-flex">
-                    <p class="col-lg-12 footer-text text-center">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;
-                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </p>
-                </div>
+            <div class="container d-flex justify-content-between">
+                <button type="button" name="" id="" class="btn text-light" style="background-color:cornflowerblue; padding: 10px 10px; font-weight: 500; border-top-left-radius: 30px; border-bottom-right-radius: 30px;">HOTLINE: +01 234 5678</button>
+                <i class="fa-brands fa-facebook-messenger" style="color: #fff; font-size: 40px; background-color: #0A7CFF; padding: 10px; border-radius: 50%;"></i>
             </div>
         </div>
         @RenderSection("footer", required: false)
