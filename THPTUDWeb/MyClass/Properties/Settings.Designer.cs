@@ -26,7 +26,7 @@ namespace MyClass.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-947POKC\\HUNGNGUYEN2019;Initial Catalog=master;Integrated Secu" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-IKD0ADM\\HUNGNGUYEN2019;Initial Catalog=master;Integrated Secu" +
             "rity=True;TrustServerCertificate=True")]
         public string StrConnect {
             get {
