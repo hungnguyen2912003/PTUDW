@@ -101,7 +101,7 @@ namespace THPTUDWeb.Controllers
         public ActionResult Product()
         {
             ProductsDAO productsDAO = new ProductsDAO();
-            List<ProductInfo> list = productsDAO.getListBylimit(25);
+            List<ProductInfo> list = productsDAO.getListBylimit(50);
             return View("Product", list);
         }
         public ActionResult Post()
