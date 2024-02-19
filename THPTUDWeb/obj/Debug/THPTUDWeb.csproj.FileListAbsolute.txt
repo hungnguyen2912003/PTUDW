@@ -153,7 +153,6 @@ E:\PTUDW\THPTUDWeb\bin\Antlr3.Runtime.pdb
 E:\PTUDW\THPTUDWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 E:\PTUDW\THPTUDWeb\obj\Debug\THPTUDWeb.csproj.AssemblyReference.cache
 E:\PTUDW\THPTUDWeb\obj\Debug\THPTUDWeb.csproj.CoreCompileInputs.cache
-E:\PTUDW\THPTUDWeb\obj\Debug\THPTUDWeb.csproj.CopyComplete
 E:\PTUDW\THPTUDWeb\obj\Debug\THPTUDWeb.dll
 E:\PTUDW\THPTUDWeb\obj\Debug\THPTUDWeb.pdb
 E:\PTUDW\THPTUDWeb\bin\EntityFramework.dll
@@ -163,3 +162,4 @@ E:\PTUDW\THPTUDWeb\bin\EntityFramework.SqlServer.xml
 E:\PTUDW\THPTUDWeb\bin\MyClass.dll
 E:\PTUDW\THPTUDWeb\bin\MyClass.pdb
 E:\PTUDW\THPTUDWeb\bin\MyClass.dll.config
+E:\PTUDW\THPTUDWeb\obj\Debug\THPTUDWeb.csproj.Up2Date
