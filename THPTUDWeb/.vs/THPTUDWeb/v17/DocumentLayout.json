@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "E:\\PTUDW\\THPTUDWeb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B06ECDD2-5E6D-441E-BD7A-CE2836C1FC8B}|MyClass\\MyClass.csproj|e:\\ptudw\\thptudweb\\myclass\\model\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B06ECDD2-5E6D-441E-BD7A-CE2836C1FC8B}|MyClass\\MyClass.csproj|solutionrelative:myclass\\model\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B06ECDD2-5E6D-441E-BD7A-CE2836C1FC8B}|MyClass\\MyClass.csproj|E:\\PTUDW\\THPTUDWeb\\myclass\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{B06ECDD2-5E6D-441E-BD7A-CE2836C1FC8B}|MyClass\\MyClass.csproj|solutionrelative:myclass\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{08646661-C12E-4AF7-BC4B-ED9DFC1FD473}|THPTUDWeb.csproj|e:\\ptudw\\thptudweb\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{08646661-C12E-4AF7-BC4B-ED9DFC1FD473}|THPTUDWeb.csproj|solutionrelative:web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,27 +19,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Products.cs",
-              "DocumentMoniker": "E:\\PTUDW\\THPTUDWeb\\MyClass\\Model\\Products.cs",
-              "RelativeDocumentMoniker": "MyClass\\Model\\Products.cs",
-              "ToolTip": "E:\\PTUDW\\THPTUDWeb\\MyClass\\Model\\Products.cs",
-              "RelativeToolTip": "MyClass\\Model\\Products.cs",
-              "ViewState": "AQIAACcAAAAAAAAAAAAIwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-09T11:40:47.724Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "App.config",
-              "DocumentMoniker": "E:\\PTUDW\\THPTUDWeb\\MyClass\\App.config",
-              "RelativeDocumentMoniker": "MyClass\\App.config",
-              "ToolTip": "E:\\PTUDW\\THPTUDWeb\\MyClass\\App.config",
-              "RelativeToolTip": "MyClass\\App.config",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAACAAAAA",
+              "Title": "Web.config",
+              "DocumentMoniker": "E:\\PTUDW\\THPTUDWeb\\Web.config",
+              "RelativeDocumentMoniker": "Web.config",
+              "ToolTip": "E:\\PTUDW\\THPTUDWeb\\Web.config",
+              "RelativeToolTip": "Web.config",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2024-03-27T16:19:59.068Z"
+              "WhenOpened": "2024-04-24T14:50:19.655Z",
+              "EditorCaption": ""
             }
           ]
         }
