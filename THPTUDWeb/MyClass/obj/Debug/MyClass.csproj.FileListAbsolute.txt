@@ -10,3 +10,15 @@ E:\PTUDW\THPTUDWeb\MyClass\obj\Debug\MyClass.csproj.CoreCompileInputs.cache
 E:\PTUDW\THPTUDWeb\MyClass\obj\Debug\MyClass.dll
 E:\PTUDW\THPTUDWeb\MyClass\obj\Debug\MyClass.pdb
 E:\PTUDW\THPTUDWeb\MyClass\obj\Debug\MyClass.csproj.Up2Date
+F:\PTUDW\THPTUDWeb\MyClass\bin\Debug\MyClass.dll.config
+F:\PTUDW\THPTUDWeb\MyClass\bin\Debug\MyClass.dll
+F:\PTUDW\THPTUDWeb\MyClass\bin\Debug\MyClass.pdb
+F:\PTUDW\THPTUDWeb\MyClass\bin\Debug\EntityFramework.dll
+F:\PTUDW\THPTUDWeb\MyClass\bin\Debug\EntityFramework.SqlServer.dll
+F:\PTUDW\THPTUDWeb\MyClass\bin\Debug\EntityFramework.xml
+F:\PTUDW\THPTUDWeb\MyClass\bin\Debug\EntityFramework.SqlServer.xml
+F:\PTUDW\THPTUDWeb\MyClass\obj\Debug\MyClass.csproj.AssemblyReference.cache
+F:\PTUDW\THPTUDWeb\MyClass\obj\Debug\MyClass.csproj.CoreCompileInputs.cache
+F:\PTUDW\THPTUDWeb\MyClass\obj\Debug\MyClass.csproj.Up2Date
+F:\PTUDW\THPTUDWeb\MyClass\obj\Debug\MyClass.dll
+F:\PTUDW\THPTUDWeb\MyClass\obj\Debug\MyClass.pdb
