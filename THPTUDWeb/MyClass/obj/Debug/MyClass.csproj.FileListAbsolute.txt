@@ -22,3 +22,15 @@ F:\PTUDW\THPTUDWeb\MyClass\obj\Debug\MyClass.csproj.CoreCompileInputs.cache
 F:\PTUDW\THPTUDWeb\MyClass\obj\Debug\MyClass.csproj.Up2Date
 F:\PTUDW\THPTUDWeb\MyClass\obj\Debug\MyClass.dll
 F:\PTUDW\THPTUDWeb\MyClass\obj\Debug\MyClass.pdb
+D:\Projects\PTUDW\THPTUDWeb\MyClass\bin\Debug\MyClass.dll.config
+D:\Projects\PTUDW\THPTUDWeb\MyClass\bin\Debug\MyClass.dll
+D:\Projects\PTUDW\THPTUDWeb\MyClass\bin\Debug\MyClass.pdb
+D:\Projects\PTUDW\THPTUDWeb\MyClass\bin\Debug\EntityFramework.dll
+D:\Projects\PTUDW\THPTUDWeb\MyClass\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\PTUDW\THPTUDWeb\MyClass\bin\Debug\EntityFramework.xml
+D:\Projects\PTUDW\THPTUDWeb\MyClass\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\PTUDW\THPTUDWeb\MyClass\obj\Debug\MyClass.csproj.AssemblyReference.cache
+D:\Projects\PTUDW\THPTUDWeb\MyClass\obj\Debug\MyClass.csproj.CoreCompileInputs.cache
+D:\Projects\PTUDW\THPTUDWeb\MyClass\obj\Debug\MyClass.csproj.Up2Date
+D:\Projects\PTUDW\THPTUDWeb\MyClass\obj\Debug\MyClass.dll
+D:\Projects\PTUDW\THPTUDWeb\MyClass\obj\Debug\MyClass.pdb

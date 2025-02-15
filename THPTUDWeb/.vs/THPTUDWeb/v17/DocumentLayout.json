@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "F:\\PTUDW\\THPTUDWeb\\",
+  "WorkspaceRootPath": "D:\\Projects\\PTUDW\\THPTUDWeb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B06ECDD2-5E6D-441E-BD7A-CE2836C1FC8B}|MyClass\\MyClass.csproj|f:\\ptudw\\thptudweb\\myclass\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{B06ECDD2-5E6D-441E-BD7A-CE2836C1FC8B}|MyClass\\MyClass.csproj|d:\\projects\\ptudw\\thptudweb\\myclass\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{B06ECDD2-5E6D-441E-BD7A-CE2836C1FC8B}|MyClass\\MyClass.csproj|solutionrelative:myclass\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
@@ -20,9 +20,9 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "App.config",
-              "DocumentMoniker": "F:\\PTUDW\\THPTUDWeb\\MyClass\\App.config",
+              "DocumentMoniker": "D:\\Projects\\PTUDW\\THPTUDWeb\\MyClass\\App.config",
               "RelativeDocumentMoniker": "MyClass\\App.config",
-              "ToolTip": "F:\\PTUDW\\THPTUDWeb\\MyClass\\App.config",
+              "ToolTip": "D:\\Projects\\PTUDW\\THPTUDWeb\\MyClass\\App.config",
               "RelativeToolTip": "MyClass\\App.config",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
