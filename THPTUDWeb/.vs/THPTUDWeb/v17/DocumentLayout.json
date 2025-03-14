@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\Projects\\PTUDW\\THPTUDWeb\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{08646661-C12E-4AF7-BC4B-ED9DFC1FD473}|THPTUDWeb.csproj|d:\\projects\\ptudw\\thptudweb\\areas\\admin\\adminarearegistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08646661-C12E-4AF7-BC4B-ED9DFC1FD473}|THPTUDWeb.csproj|solutionrelative:areas\\admin\\adminarearegistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08646661-C12E-4AF7-BC4B-ED9DFC1FD473}|THPTUDWeb.csproj|d:\\projects\\ptudw\\thptudweb\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08646661-C12E-4AF7-BC4B-ED9DFC1FD473}|THPTUDWeb.csproj|solutionrelative:app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B06ECDD2-5E6D-441E-BD7A-CE2836C1FC8B}|MyClass\\MyClass.csproj|d:\\projects\\ptudw\\thptudweb\\myclass\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{B06ECDD2-5E6D-441E-BD7A-CE2836C1FC8B}|MyClass\\MyClass.csproj|solutionrelative:myclass\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
@@ -19,6 +27,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "AdminAreaRegistration.cs",
+              "DocumentMoniker": "D:\\Projects\\PTUDW\\THPTUDWeb\\Areas\\Admin\\AdminAreaRegistration.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\AdminAreaRegistration.cs",
+              "ToolTip": "D:\\Projects\\PTUDW\\THPTUDWeb\\Areas\\Admin\\AdminAreaRegistration.cs",
+              "RelativeToolTip": "Areas\\Admin\\AdminAreaRegistration.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwBIAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-12T04:42:01.678Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RouteConfig.cs",
+              "DocumentMoniker": "D:\\Projects\\PTUDW\\THPTUDWeb\\App_Start\\RouteConfig.cs",
+              "RelativeDocumentMoniker": "App_Start\\RouteConfig.cs",
+              "ToolTip": "D:\\Projects\\PTUDW\\THPTUDWeb\\App_Start\\RouteConfig.cs",
+              "RelativeToolTip": "App_Start\\RouteConfig.cs",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAQwF0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-12T04:40:49.704Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "App.config",
               "DocumentMoniker": "D:\\Projects\\PTUDW\\THPTUDWeb\\MyClass\\App.config",
               "RelativeDocumentMoniker": "MyClass\\App.config",
